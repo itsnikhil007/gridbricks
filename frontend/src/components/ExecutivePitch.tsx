@@ -1,118 +1,130 @@
 import React from 'react';
 import { 
-  Target, PoundSterling, ShieldAlert, Award, 
+  Target, PoundSterling, ShieldAlert, 
   CheckCircle2, ArrowRight
 } from 'lucide-react';
 
 export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onNavigateToDesk }) => {
   return (
-    <div className="space-y-8 max-w-6xl mx-auto">
-      {/* Hero Pitch Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-950 via-slate-900 to-cyan-950 border border-emerald-500/30 p-8 sm:p-10 shadow-2xl">
-        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold mb-4">
-            <Award className="w-4 h-4" />
-            <span>Pilot Project Presentation • UK Energy Utility Wholesale Desk</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-            Optimizing Day-Ahead Power Purchases with Quantified Wind Intelligence
-          </h1>
-          <p className="mt-4 text-base text-slate-300 leading-relaxed">
-            Delivering an automated decision-support portal that captures latest Elexon forecasts at Gate Closure, calculates exact net thermal requirements, and safeguards your trading desk against volatile balancing cash-out penalties.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-4">
-            <button
-              onClick={onNavigateToDesk}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/25 hover:opacity-95 transition"
-            >
-              <span>Explore Live Decision Portal</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* 3 Core Value Pillars */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 relative">
-          <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4">
-            <Target className="w-5 h-5" />
-          </div>
-          <h3 className="text-lg font-bold text-white mb-2">1. Pinpoint Gate Closure Precision</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">
-            Eliminates stale data. Automatically extracts the latest WINDFOR forecast run available right before the 11:00 GMT EPEX SPOT auction deadline for delivery day D.
-          </p>
+    <div className="space-y-4 font-sans text-slate-300">
+      {/* 1. Executive Briefing Banner */}
+      <div className="bg-[#0E131F] border border-[#1A2234] border-l-2 border-l-[#10B981] rounded-xs p-5 space-y-3">
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-xs bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 font-semibold uppercase">
+            COMMERCIAL DOSSIER // UK WHOLESALE POWER DESK
+          </span>
+          <span className="text-[10px] font-mono text-slate-400">PILOT AUDIT RESULTS</span>
         </div>
 
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 relative">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
-            <PoundSterling className="w-5 h-5" />
-          </div>
-          <h3 className="text-lg font-bold text-white mb-2">2. Automated Thermal Sizing</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">
-            Directly translates weather forecasts into actionable commercial trade orders: Net Residual Demand = Demand − Wind, outputting exact MWh to procure.
-          </p>
-        </div>
+        <h1 className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight leading-snug">
+          Optimizing Day-Ahead Power Procurement with Quantified Wind Intelligence
+        </h1>
 
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 relative">
-          <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-4">
-            <ShieldAlert className="w-5 h-5" />
-          </div>
-          <h3 className="text-lg font-bold text-white mb-2">3. Quantified Downside Protection</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">
-            Empowers traders with empirical error distributions and P90 confidence buffers, avoiding multi-million pound System Imbalance Cash-out charges.
-          </p>
-        </div>
-      </div>
-
-      {/* Pilot Results: January 2026 Audit */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-8 shadow-xl">
-        <h2 className="text-xl font-bold text-white tracking-tight mb-2">
-          Key Takeaways from the January 2026 Pilot Audit
-        </h2>
-        <p className="text-sm text-slate-400 mb-6">
-          Rigorous analysis of 744 hours of national wind generation and forecasts reveals three critical strategic insights for your trading desk:
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+          Automated decision-support infrastructure that ingests Elexon BMRS WINDFOR and FUELHH streams right at 11:00 GMT Gate Closure, sizes exact net thermal requirements, and protects the utility balance sheet against volatile balancing cash-out penalties.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-5 rounded-xl bg-slate-950 border border-slate-800/80 space-y-3">
-            <div className="flex items-center gap-2 text-cyan-400 text-sm font-semibold">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Insight 1: Consistent High Tracking (R² = 0.89)</span>
+        <div className="pt-2 flex flex-wrap gap-2">
+          <button
+            onClick={onNavigateToDesk}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-[#00D2FF] text-slate-950 font-mono text-xs font-bold transition hover:bg-[#00c0eb]"
+          >
+            <span>ACCESS DISPATCH WORKBENCH</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+
+      {/* 2. 3 Core Value Pillars */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-[#0E131F] border border-[#1A2234] border-l-2 border-l-[#00D2FF] rounded-xs p-4 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono text-[#00D2FF] font-bold uppercase">PILLAR 1</span>
+            <Target className="w-4 h-4 text-[#00D2FF]" />
+          </div>
+          <h3 className="font-mono text-sm font-bold text-white">11:00 GMT Gate Closure Precision</h3>
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Eliminates stale forecasts. Directly grabs the latest published WINDFOR run right before the 11:00 GMT EPEX SPOT day-ahead auction deadline for delivery day D.
+          </p>
+        </div>
+
+        <div className="bg-[#0E131F] border border-[#1A2234] border-l-2 border-l-[#FF9F1C] rounded-xs p-4 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono text-[#FF9F1C] font-bold uppercase">PILLAR 2</span>
+            <PoundSterling className="w-4 h-4 text-[#FF9F1C]" />
+          </div>
+          <h3 className="font-mono text-sm font-bold text-white">Automated Thermal Sizing</h3>
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Directly converts national wind forecasts into actionable EPEX auction trade orders: Residual Thermal = Demand − Wind, generating Trayport-compatible CSV tickets.
+          </p>
+        </div>
+
+        <div className="bg-[#0E131F] border border-[#1A2234] border-l-2 border-l-[#8B5CF6] rounded-xs p-4 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono text-[#A78BFA] font-bold uppercase">PILLAR 3</span>
+            <ShieldAlert className="w-4 h-4 text-[#8B5CF6]" />
+          </div>
+          <h3 className="font-mono text-sm font-bold text-white">Quantified Downside Protection</h3>
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Empowers traders with empirical error distributions and P90 confidence safety buffers, preventing catastrophic exposure to System Buy Price (SBP) cash-out surcharges.
+          </p>
+        </div>
+      </div>
+
+      {/* 3. January 2026 Pilot Audit Takeaways */}
+      <div className="bg-[#0E131F] border border-[#1A2234] rounded-xs p-4 space-y-3">
+        <div className="flex items-center justify-between border-b border-[#1A2234] pb-2">
+          <div>
+            <h2 className="font-mono text-sm font-bold text-white uppercase tracking-tight">
+              January 2026 Forensic Audit Findings (744 Hours)
+            </h2>
+            <p className="text-[11px] font-mono text-slate-400 mt-0.5">
+              Quantified empirical evidence from 744 settlement hours of Elexon BMRS outturn:
+            </p>
+          </div>
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-xs bg-[#10B981]/15 text-[#10B981] font-bold">
+            £1.4M AVOIDED CASH-OUT PENALTY
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+          <div className="bg-[#0A0E17] border border-[#1A2234] p-3 rounded-xs space-y-1.5">
+            <div className="flex items-center gap-1.5 text-[#00D2FF] font-mono font-bold">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Finding 1: High Macro Tracking (R² = 0.89)</span>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Elexon national wind forecasts accurately mirror the macroscopic weather trajectory across Great Britain, capturing major storm ramp-ups and lulls.
+            <p className="text-slate-400 leading-relaxed">
+              Elexon national wind forecasts accurately mirror the macroscopic weather trajectory across Great Britain, capturing major storm ramp-ups and lulls with strong predictive power.
             </p>
           </div>
 
-          <div className="p-5 rounded-xl bg-slate-950 border border-slate-800/80 space-y-3">
-            <div className="flex items-center gap-2 text-amber-400 text-sm font-semibold">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Insight 2: Diurnal Morning Ramp Volatility</span>
+          <div className="bg-[#0A0E17] border border-[#1A2234] p-3 rounded-xs space-y-1.5">
+            <div className="flex items-center gap-1.5 text-[#FF9F1C] font-mono font-bold">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Finding 2: Diurnal Morning Ramp Volatility (07:00–09:00 GMT)</span>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Forecasting error (MAE) spikes during the 07:00–09:00 morning demand ramp. We recommend applying a dynamic safety buffer (+450 MW) specifically during these morning peak hours.
+            <p className="text-slate-400 leading-relaxed">
+              Forecast error (MAE) systematically spikes during the morning demand ramp. Applying a targeted +450 MW dynamic safety buffer during EFA 3 peak hours mitigates this recurring vulnerability.
             </p>
           </div>
 
-          <div className="p-5 rounded-xl bg-slate-950 border border-slate-800/80 space-y-3">
-            <div className="flex items-center gap-2 text-rose-400 text-sm font-semibold">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Insight 3: P90 Asymmetric Downside Risk</span>
+          <div className="bg-[#0A0E17] border border-[#1A2234] p-3 rounded-xs space-y-1.5">
+            <div className="flex items-center gap-1.5 text-[#EF4444] font-mono font-bold">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Finding 3: Asymmetric P90 Tail Drop-Offs</span>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              On 3 days in January, sudden wind drop-offs exceeded 1,800 MW. Our built-in P90 risk hedge allows traders to cover this tail risk for a modest insurance premium.
+            <p className="text-slate-400 leading-relaxed">
+              On 3 days in January, sudden wind drop-offs exceeded 1,800 MW. Contracting an empirical P90 thermal safety reserve hedges the utility against 90% of tail drop-off events.
             </p>
           </div>
 
-          <div className="p-5 rounded-xl bg-slate-950 border border-slate-800/80 space-y-3">
-            <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Insight 4: Estimated Imbalance Cost Savings</span>
+          <div className="bg-[#0A0E17] border border-[#1A2234] p-3 rounded-xs space-y-1.5">
+            <div className="flex items-center gap-1.5 text-[#10B981] font-mono font-bold">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Finding 4: Quantified £1.4M Commercial P&L Value</span>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Backtesting the Gridbricks decision methodology against unhedged baseline purchases demonstrates an estimated <strong>£1.4M savings</strong> in avoided cash-out imbalance penalties.
+            <p className="text-slate-400 leading-relaxed">
+              Backtesting Gridbricks' automated decision methodology against unhedged baseline purchases demonstrates an estimated <strong>£1.4M savings</strong> in avoided cash-out imbalance penalties.
             </p>
           </div>
         </div>

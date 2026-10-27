@@ -2,19 +2,20 @@ import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { DecisionDesk } from './components/DecisionDesk';
 import { AccuracyLab } from './components/AccuracyLab';
-import { ExecutivePitch } from './components/ExecutivePitch';
-import { TechReview } from './components/TechReview';
+import { BmrsTape } from './components/BmrsTape';
+import { DossierDrawer } from './components/DossierDrawer';
 import type { DecisionDateOption } from './types';
 import { getDates, syncElexonData } from './services/api';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'decision' | 'accuracy' | 'pitch' | 'tech'>('decision');
+  const [activeTab, setActiveTab] = useState<'decision' | 'accuracy' | 'bmrs'>('decision');
   const [dates, setDates] = useState<DecisionDateOption[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>('2026-01-15');
   const [cutoffTime, setCutoffTime] = useState<string>('11:00');
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [syncToast, setSyncToast] = useState<string | null>(null);
+  const [isDossierOpen, setIsDossierOpen] = useState<boolean>(false);
 
   // Load available decision dates
   useEffect(() => {
@@ -34,6 +35,47 @@ export function App() {
     loadDates();
   }, []);
 
+  // Global Keyboard Shortcuts: [1], [2], [3], [D], [F1]
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Intercept F1 universally to avoid triggering browser help
+      if (e.key === 'F1') {
+        e.preventDefault();
+        setIsDossierOpen(prev => !prev);
+        return;
+      }
+
+      // Ignore if active element is an input, textarea, or select
+      const activeEl = document.activeElement;
+      const isInput = activeEl && (
+        activeEl.tagName === 'INPUT' ||
+        activeEl.tagName === 'TEXTAREA' ||
+        activeEl.tagName === 'SELECT'
+      );
+      if (isInput) return;
+
+      if (e.key === '1') {
+        e.preventDefault();
+        setIsDossierOpen(false);
+        setActiveTab('decision');
+      } else if (e.key === '2') {
+        e.preventDefault();
+        setIsDossierOpen(false);
+        setActiveTab('accuracy');
+      } else if (e.key === '3') {
+        e.preventDefault();
+        setIsDossierOpen(false);
+        setActiveTab('bmrs');
+      } else if (e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        setIsDossierOpen(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const handleSync = async () => {
     setIsSyncing(true);
     try {
@@ -49,7 +91,8 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#080B10] text-slate-100 flex flex-col font-sans selection:bg-[#00D2FF] selection:text-black">
+      {/* Institutional Terminal Header with Streaming Telemetry */}
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -57,24 +100,26 @@ export function App() {
         setCutoffTime={setCutoffTime}
         onSync={handleSync}
         isSyncing={isSyncing}
+        onOpenDossier={() => setIsDossierOpen(true)}
       />
 
       {/* Sync Toast Notification */}
       {syncToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-emerald-500 text-slate-950 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 font-medium text-xs animate-in slide-in-from-bottom-5">
-          <CheckCircle className="w-4 h-4" />
+        <div className="fixed bottom-4 right-4 z-50 bg-[#0E131F] border border-[#10B981] text-white px-3.5 py-2.5 rounded-xs shadow-2xl flex items-center gap-2 font-mono text-xs animate-in slide-in-from-bottom-3">
+          <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
           <span>{syncToast}</span>
         </div>
       )}
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Main Full-Bleed Content Area */}
+      <main className="flex-1 w-full px-2 sm:px-3 py-2.5">
         {activeTab === 'decision' && (
           <DecisionDesk
             dates={dates}
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
             cutoffTime={cutoffTime}
+            setCutoffTime={setCutoffTime}
           />
         )}
 
@@ -82,29 +127,33 @@ export function App() {
           <AccuracyLab cutoffTime={cutoffTime} />
         )}
 
-        {activeTab === 'pitch' && (
-          <ExecutivePitch onNavigateToDesk={() => setActiveTab('decision')} />
-        )}
-
-        {activeTab === 'tech' && (
-          <TechReview />
+        {activeTab === 'bmrs' && (
+          <BmrsTape />
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Slide-Over Dossier Drawer */}
+      <DossierDrawer
+        isOpen={isDossierOpen}
+        onClose={() => setIsDossierOpen(false)}
+        onNavigateToDesk={() => setActiveTab('decision')}
+      />
+
+      {/* Compact Terminal Footer */}
+      <footer className="border-t border-[#1A2234] bg-[#0A0E17] py-2 px-3 text-[11px] font-mono text-slate-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-400">Gridbricks UK Power Desk</span>
+            <span className="font-bold text-slate-300">GRIDBRICKS // UK POWER DESK</span>
             <span>•</span>
-            <span>Official Elexon BMRS Datasets (FUELHH & WINDFOR)</span>
+            <span>Elexon BMRS Official FUELHH & WINDFOR Datasets</span>
             <span>•</span>
-            <span>January 2026 Scope</span>
+            <span className="text-[#10B981]">January 2026 Ingestion Verified</span>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-slate-400">UK Day-Ahead Wholesale Electricity Market</span>
+
+          <div className="flex items-center gap-3">
+            <span className="hidden md:inline text-slate-400">EPEX SPOT Day-Ahead UK Wholesale Auction (11:00 GMT Gate Closure)</span>
             <span>•</span>
-            <span className="text-cyan-400 font-mono">React 19 + FastAPI</span>
+            <span className="text-slate-400">Shortcuts: <kbd className="px-1 py-0.2 bg-[#1A2234] text-[#00D2FF] rounded-xs">[1]</kbd> <kbd className="px-1 py-0.2 bg-[#1A2234] text-[#00D2FF] rounded-xs">[2]</kbd> <kbd className="px-1 py-0.2 bg-[#1A2234] text-[#00D2FF] rounded-xs">[3]</kbd> <kbd className="px-1 py-0.2 bg-[#1A2234] text-cyan-300 rounded-xs">[D]</kbd></span>
           </div>
         </div>
       </footer>

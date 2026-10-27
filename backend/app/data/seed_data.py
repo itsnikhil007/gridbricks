@@ -37,7 +37,9 @@ def init_db(db_path=DB_PATH):
     """)
     cur.execute("CREATE INDEX IF NOT EXISTS idx_fc_start ON forecast_wind (startTime)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_fc_pub ON forecast_wind (publishTime)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_fc_start_pub ON forecast_wind (startTime, publishTime)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_act_start ON actual_wind (startTime)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_act_start_sp ON actual_wind (startTime, settlementPeriod)")
     conn.commit()
     return conn
 
