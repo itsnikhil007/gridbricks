@@ -99,11 +99,15 @@ export const Header: React.FC<HeaderProps> = ({
                 className="bg-transparent text-zinc-900 font-semibold focus:outline-none cursor-pointer text-xs max-w-[130px] sm:max-w-none truncate"
                 title="Select Delivery Date"
               >
-                {dates.map((d) => (
-                  <option key={d.decision_date} value={d.decision_date} className="bg-white text-zinc-900">
-                    Del: {d.delivery_date} (Dec: {d.decision_date.substring(5)})
-                  </option>
-                ))}
+                {dates.map((d) => {
+                  const delivDay = d.delivery_date.split('-')[2] || d.delivery_date;
+                  const decDay = d.decision_date.split('-')[2] || d.decision_date;
+                  return (
+                    <option key={d.decision_date} value={d.decision_date} className="bg-white text-zinc-900">
+                      Deliv: {delivDay} Jan 2026 (Auction: {decDay} Jan)
+                    </option>
+                  );
+                })}
               </select>
             </div>
 

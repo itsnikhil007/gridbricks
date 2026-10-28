@@ -252,7 +252,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
               Day-Ahead Power Dispatch Desk
             </h1>
             <p className="text-xs text-zinc-600 mt-0.5 leading-relaxed">
-              Trading Day D-1 (<strong className="text-zinc-900 font-semibold">{data.decision_date}</strong>) → Delivery Day D (<strong className="text-zinc-900 font-semibold">{data.delivery_date}</strong>). Locks latest wind telemetry prior to EPEX SPOT auction.
+              Wholesale Auction Day D-1 (<strong className="text-zinc-900 font-semibold">{data.decision_date}</strong>) → Power Delivery Day D (<strong className="text-zinc-900 font-semibold">{data.delivery_date}</strong>). Locks latest wind telemetry prior to EPEX SPOT auction.
             </p>
           </div>
 
@@ -266,11 +266,15 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                 onChange={(e) => setSelectedDate(e.target.value)}
                 className="bg-transparent text-zinc-900 font-semibold focus:outline-none cursor-pointer text-xs"
               >
-                {dates.map((d) => (
-                  <option key={d.decision_date} value={d.decision_date}>
-                    {d.delivery_date} (Decision: {d.decision_date})
-                  </option>
-                ))}
+                {dates.map((d) => {
+                  const delivDay = d.delivery_date.split('-')[2] || d.delivery_date;
+                  const decDay = d.decision_date.split('-')[2] || d.decision_date;
+                  return (
+                    <option key={d.decision_date} value={d.decision_date}>
+                      Delivery: {delivDay} Jan 2026 (Auction: {decDay} Jan)
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
