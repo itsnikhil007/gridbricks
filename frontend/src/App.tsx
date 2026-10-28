@@ -48,7 +48,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#F9F9FB] text-zinc-900 flex flex-col font-sans">
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -63,8 +63,8 @@ export function App() {
 
       {/* Sync Toast Notification */}
       {syncToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-emerald-500 text-slate-950 px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs animate-in slide-in-from-bottom-5">
-          <CheckCircle2 className="w-4 h-4" />
+        <div className="fixed bottom-6 right-6 z-50 bg-zinc-900 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 font-medium text-xs border border-zinc-800 animate-in slide-in-from-bottom-5">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>{syncToast}</span>
         </div>
       )}
@@ -94,19 +94,19 @@ export function App() {
       </main>
 
       {/* Clean Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-xs text-slate-500">
+      <footer className="border-t border-zinc-200 bg-white py-6 text-xs text-zinc-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-400">Gridbricks UK Energy Planner</span>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-semibold text-zinc-800">Gridbricks // UK Power Desk</span>
             <span>•</span>
             <span>Official Elexon BMRS Datasets (FUELHH & WINDFOR)</span>
             <span>•</span>
             <span>January 2026 Scope</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-slate-400">UK Day-Ahead Wholesale Power Market</span>
+            <span className="text-zinc-600">UK Day-Ahead Wholesale Power Market</span>
             <span>•</span>
-            <span className="text-cyan-400 font-mono">React 19 + FastAPI</span>
+            <span className="text-teal-700 font-mono font-medium">FastAPI + React 19</span>
           </div>
         </div>
       </footer>

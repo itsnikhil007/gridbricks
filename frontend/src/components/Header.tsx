@@ -34,14 +34,15 @@ export const Header: React.FC<HeaderProps> = ({
   onSync,
   isSyncing
 }) => {
-  // Live countdown timer to 11:00 GMT Gate Closure
+  // Live countdown timer to selected GMT Gate Closure
   const [countdown, setCountdown] = useState<string>('01h 14m 22s');
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const updateCountdown = () => {
       const now = new Date();
       const target = new Date();
-      target.setUTCHours(11, 0, 0, 0);
+      const [h, m] = (cutoffTime || '11:00').split(':').map(Number);
+      target.setUTCHours(h, m || 0, 0, 0);
       let diff = target.getTime() - now.getTime();
       if (diff < 0) diff += 24 * 3600 * 1000;
 
@@ -52,119 +53,129 @@ export const Header: React.FC<HeaderProps> = ({
       setCountdown(
         `${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`
       );
-    }, 1000);
+    };
 
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [cutoffTime]);
 
   return (
-    <header className="border-b border-slate-800 bg-slate-950/95 backdrop-blur sticky top-0 z-50">
+    <header className="border-b border-zinc-200 bg-white sticky top-0 z-50 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           
-          {/* Brand & Title */}
+          {/* Institutional Brand Mark */}
           <div className="flex items-center gap-3 shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center shadow-md shadow-cyan-500/20">
-              <Zap className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 rounded-md bg-zinc-900 flex items-center justify-center shadow-xs">
+              <Zap className="w-4 h-4 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-base text-white tracking-tight">Gridbricks</span>
-                <span className="px-2 py-0.5 text-[10px] font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-full">
-                  UK Energy Planner
+                <span className="font-semibold text-sm text-zinc-950 tracking-tight">
+                  Gridbricks // UK Power Desk
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 hidden sm:block">
-                Day-Ahead Wholesale Renewable Procurement
+              <p className="text-[11px] text-zinc-500 hidden sm:block">
+                Day-Ahead Renewable Procurement & Settlement
               </p>
             </div>
           </div>
 
-          {/* Navigation Tabs */}
-          <nav className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+          {/* Segmented Tab Navigation */}
+          <nav className="flex items-center gap-1 bg-zinc-100 p-1 rounded-lg border border-zinc-200/80 text-xs">
             <button
               onClick={() => setActiveTab('decision')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition ${
                 activeTab === 'decision'
-                  ? 'bg-cyan-500 text-slate-950 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200/80'
+                  : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/50'
               }`}
             >
-              <Compass className="w-4 h-4" />
-              <span>Day-Ahead Planner</span>
+              <Compass className="w-3.5 h-3.5" />
+              <span>Day-Ahead Dispatch Desk</span>
             </button>
 
             <button
               onClick={() => setActiveTab('accuracy')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition ${
                 activeTab === 'accuracy'
-                  ? 'bg-cyan-500 text-slate-950 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200/80'
+                  : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/50'
               }`}
             >
-              <BarChart3 className="w-4 h-4" />
-              <span>Accuracy & Trust Lab</span>
+              <BarChart3 className="w-3.5 h-3.5" />
+              <span>Accuracy & Backtest Lab</span>
             </button>
 
             <button
               onClick={() => setActiveTab('pitch')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition ${
                 activeTab === 'pitch'
-                  ? 'bg-emerald-500 text-slate-950 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200/80'
+                  : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/50'
               }`}
             >
-              <Presentation className="w-4 h-4" />
-              <span>Client Pitch</span>
+              <Presentation className="w-3.5 h-3.5" />
+              <span>Commercial Dossier</span>
             </button>
 
             <button
               onClick={() => setActiveTab('tech')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition ${
                 activeTab === 'tech'
-                  ? 'bg-purple-500 text-white font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200/80'
+                  : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/50'
               }`}
             >
-              <Code2 className="w-4 h-4" />
-              <span>Tech Review</span>
+              <Code2 className="w-3.5 h-3.5" />
+              <span>System Architecture</span>
             </button>
           </nav>
 
-          {/* Right Controls: Date Selector, Gate Closure, Sync */}
+          {/* Right Controls: Badges, Date Selector, Sync */}
           <div className="flex items-center gap-2.5 shrink-0">
+            {/* Elexon Live Telemetry Badge */}
+            <div className="hidden xl:flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-md px-2.5 py-1.5 text-xs font-medium shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+              </span>
+              <span>Elexon BMRS Live</span>
+            </div>
+
+            {/* Gate Closure Countdown Badge */}
+            <div className="hidden lg:flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-900 rounded-md px-2.5 py-1.5 text-xs font-medium shadow-xs">
+              <Clock className="w-3.5 h-3.5 text-amber-700" />
+              <span className="text-amber-800">Gate Closure:</span>
+              <select
+                value={cutoffTime}
+                onChange={(e) => setCutoffTime(e.target.value)}
+                className="bg-transparent text-amber-950 font-semibold font-tabular focus:outline-none cursor-pointer mr-1"
+              >
+                <option value="08:00" className="bg-white text-zinc-900">08:00 GMT</option>
+                <option value="09:30" className="bg-white text-zinc-900">09:30 GMT</option>
+                <option value="11:00" className="bg-white text-zinc-900">11:00 GMT (EPEX DA)</option>
+                <option value="14:00" className="bg-white text-zinc-900">14:00 GMT</option>
+                <option value="17:00" className="bg-white text-zinc-900">17:00 GMT</option>
+              </select>
+              <span className="text-[11px] font-tabular text-amber-800">({countdown})</span>
+            </div>
+
             {/* Date Selector */}
-            <div className="hidden md:flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs">
-              <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="hidden md:flex items-center gap-1.5 bg-white border border-zinc-200 rounded-md px-2.5 py-1.5 text-xs text-zinc-800 font-medium shadow-xs">
+              <Calendar className="w-3.5 h-3.5 text-zinc-500" />
               <select
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="bg-transparent text-white font-medium focus:outline-none cursor-pointer"
+                className="bg-transparent text-zinc-900 font-medium focus:outline-none cursor-pointer"
               >
                 {dates.map((d) => (
-                  <option key={d.decision_date} value={d.decision_date} className="bg-slate-900 text-slate-200">
+                  <option key={d.decision_date} value={d.decision_date} className="bg-white text-zinc-900">
                     Decision: {d.decision_date} (Delivery: {d.delivery_date})
                   </option>
                 ))}
               </select>
-            </div>
-
-            {/* Gate Closure Countdown Badge */}
-            <div className="hidden lg:flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs">
-              <Clock className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-slate-400">Gate Closure:</span>
-              <select
-                value={cutoffTime}
-                onChange={(e) => setCutoffTime(e.target.value)}
-                className="bg-transparent text-amber-300 font-mono font-medium focus:outline-none cursor-pointer mr-1"
-              >
-                <option value="08:00" className="bg-slate-900 text-slate-200">08:00 GMT</option>
-                <option value="09:30" className="bg-slate-900 text-slate-200">09:30 GMT</option>
-                <option value="11:00" className="bg-slate-900 text-slate-200">11:00 GMT (EPEX DA)</option>
-                <option value="14:00" className="bg-slate-900 text-slate-200">14:00 GMT</option>
-                <option value="17:00" className="bg-slate-900 text-slate-200">17:00 GMT</option>
-              </select>
-              <span className="text-[11px] font-mono text-slate-400">({countdown})</span>
             </div>
 
             {/* Sync Button */}
@@ -172,9 +183,9 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onSync}
               disabled={isSyncing}
               title="Refresh / Verify against Elexon BMRS API"
-              className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition disabled:opacity-50"
+              className="p-2 rounded-md bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-600 hover:text-zinc-950 shadow-xs transition disabled:opacity-50 cursor-pointer"
             >
-              <RefreshCw className={`w-4 h-4 ${isSyncing ? 'animate-spin text-cyan-400' : ''}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-teal-600' : ''}`} />
             </button>
           </div>
 
