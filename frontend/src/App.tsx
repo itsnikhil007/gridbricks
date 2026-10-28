@@ -63,14 +63,14 @@ export function App() {
 
       {/* Sync Toast Notification */}
       {syncToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-zinc-900 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 font-medium text-xs border border-zinc-800 animate-in slide-in-from-bottom-5">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+        <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-zinc-900 text-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-lg shadow-lg flex items-center gap-2 font-medium text-xs border border-zinc-800 animate-in slide-in-from-bottom-5">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{syncToast}</span>
         </div>
       )}
 
       {/* Main Content Workspace */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         {activeTab === 'decision' && (
           <DecisionDesk
             dates={dates}
@@ -94,17 +94,17 @@ export function App() {
       </main>
 
       {/* Clean Footer */}
-      <footer className="border-t border-zinc-200 bg-white py-6 text-xs text-zinc-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 flex-wrap">
+      <footer className="border-t border-zinc-200 bg-white py-5 sm:py-6 text-xs text-zinc-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
             <span className="font-semibold text-zinc-800">Gridbricks // UK Power Desk</span>
-            <span>•</span>
-            <span>Official Elexon BMRS Datasets (FUELHH & WINDFOR)</span>
+            <span className="hidden xs:inline">•</span>
+            <span className="hidden sm:inline">Official Elexon BMRS Datasets (FUELHH & WINDFOR)</span>
             <span>•</span>
             <span>January 2026 Scope</span>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-zinc-600">UK Day-Ahead Wholesale Power Market</span>
+          <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center sm:justify-end">
+            <span className="text-zinc-600">UK Day-Ahead Wholesale Market</span>
             <span>•</span>
             <span className="text-teal-700 font-mono font-medium">FastAPI + React 19</span>
           </div>

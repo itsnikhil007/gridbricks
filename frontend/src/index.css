@@ -6,6 +6,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
     @apply bg-[#F9F9FB] text-zinc-900 font-sans antialiased min-h-screen selection:bg-teal-100 selection:text-teal-900;
   }
@@ -15,7 +19,17 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Enterprise Warm-Neutral Scrollbars */
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Enterprise Warm-Neutral Scrollbars for tables & desktop */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

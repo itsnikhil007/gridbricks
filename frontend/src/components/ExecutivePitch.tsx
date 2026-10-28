@@ -1,24 +1,24 @@
 import React from 'react';
 import { 
   Target, PoundSterling, ShieldAlert, 
-  CheckCircle2, ArrowRight
+  CheckCircle2, ArrowRight, ArrowRightLeft
 } from 'lucide-react';
 
 export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onNavigateToDesk }) => {
   return (
-    <div className="space-y-6 font-sans text-zinc-700">
+    <div className="space-y-4 sm:space-y-6 font-sans text-zinc-700">
       
       {/* 1. Executive Briefing Banner */}
-      <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-6 shadow-xs space-y-3">
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-teal-800 bg-teal-50 px-2 py-0.5 rounded-sm border border-teal-200">
+      <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-5 sm:p-6 shadow-xs space-y-3">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-teal-800 bg-teal-50 px-2 py-0.5 rounded-sm border border-teal-200">
             COMMERCIAL DOSSIER // UK WHOLESALE POWER DESK
           </span>
           <span className="text-zinc-300">•</span>
-          <span className="text-[11px] text-zinc-500 font-medium">PILOT AUDIT RESULTS</span>
+          <span className="text-[10px] sm:text-[11px] text-zinc-500 font-medium">PILOT AUDIT RESULTS</span>
         </div>
 
-        <h1 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight leading-snug">
+        <h1 className="text-lg sm:text-2xl font-bold text-zinc-950 tracking-tight leading-snug">
           Optimizing Day-Ahead Power Procurement with Quantified Wind Intelligence
         </h1>
 
@@ -29,7 +29,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
         <div className="pt-2">
           <button
             onClick={onNavigateToDesk}
-            className="flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer"
+            className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-md bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer active:scale-95"
           >
             <span>Access Dispatch Desk</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -38,8 +38,8 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
       </div>
 
       {/* 2. 3 Core Value Pillars */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-5 shadow-xs space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+        <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-semibold text-teal-800 uppercase tracking-wider">PILLAR 1</span>
             <Target className="w-4 h-4 text-teal-600" />
@@ -50,7 +50,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
           </p>
         </div>
 
-        <div className="bg-white border border-zinc-200 border-l-4 border-l-amber-600 rounded-lg p-5 shadow-xs space-y-2">
+        <div className="bg-white border border-zinc-200 border-l-4 border-l-amber-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-semibold text-amber-800 uppercase tracking-wider">PILLAR 2</span>
             <PoundSterling className="w-4 h-4 text-amber-600" />
@@ -61,7 +61,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
           </p>
         </div>
 
-        <div className="bg-white border border-zinc-200 border-l-4 border-l-emerald-600 rounded-lg p-5 shadow-xs space-y-2">
+        <div className="bg-white border border-zinc-200 border-l-4 border-l-emerald-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">PILLAR 3</span>
             <ShieldAlert className="w-4 h-4 text-emerald-600" />
@@ -74,7 +74,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
       </div>
 
       {/* 3. January 2026 Pilot Audit Takeaways */}
-      <div className="bg-white border border-zinc-200 rounded-lg p-6 shadow-xs space-y-4">
+      <div className="bg-white border border-zinc-200 rounded-lg p-5 sm:p-6 shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 pb-3">
           <div>
             <h2 className="text-sm font-bold text-zinc-950 uppercase tracking-tight">
@@ -89,10 +89,10 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-xs">
           <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
             <div className="flex items-center gap-1.5 text-teal-800 font-semibold">
-              <CheckCircle2 className="w-4 h-4 text-teal-600" />
+              <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
               <span>Finding 1: High Macro Tracking (R² = 0.89)</span>
             </div>
             <p className="text-zinc-600 leading-relaxed">
@@ -102,33 +102,84 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
 
           <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
             <div className="flex items-center gap-1.5 text-amber-800 font-semibold">
-              <CheckCircle2 className="w-4 h-4 text-amber-600" />
-              <span>Finding 2: Diurnal Morning Ramp Volatility (07:00–09:00 GMT)</span>
+              <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
+              <span>Finding 2: The 07:00–09:00 AM Morning Ramp Risk</span>
             </div>
             <p className="text-zinc-600 leading-relaxed">
-              Forecast error (MAE) systematically spikes during the morning demand ramp. Applying a targeted +450 MW dynamic safety buffer during EFA 3 peak hours mitigates this recurring vulnerability.
-            </p>
-          </div>
-
-          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
-            <div className="flex items-center gap-1.5 text-rose-800 font-semibold">
-              <CheckCircle2 className="w-4 h-4 text-rose-600" />
-              <span>Finding 3: Asymmetric P90 Tail Drop-Offs</span>
-            </div>
-            <p className="text-zinc-600 leading-relaxed">
-              On 3 days in January, sudden wind drop-offs exceeded 1,800 MW. Contracting an empirical P90 thermal safety reserve hedges the utility against 90% of tail drop-off events.
+              Diurnal analysis reveals that forecast variance spikes during the morning load ramp. Desks that hedge aggressively during this window avoid severe short balancing prices.
             </p>
           </div>
 
           <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
             <div className="flex items-center gap-1.5 text-emerald-800 font-semibold">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>Finding 4: Quantified £1.42M Commercial P&L Value</span>
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Finding 3: Positive Model Bias (+312 MW Over-prediction)</span>
             </div>
             <p className="text-zinc-600 leading-relaxed">
-              Backtesting Gridbricks' automated decision methodology against unhedged baseline purchases demonstrates an estimated <strong className="text-zinc-900">£1.42M savings</strong> in avoided cash-out imbalance penalties.
+              The national forecast overestimates wind by 312 MW on average, creating an inherent risk of being "short" in the balancing market without our automated P90 safety cushion.
             </p>
           </div>
+
+          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
+            <div className="flex items-center gap-1.5 text-zinc-900 font-semibold">
+              <CheckCircle2 className="w-4 h-4 text-zinc-700 shrink-0" />
+              <span>Finding 4: P90 Safety Sizing (+850 MW)</span>
+            </div>
+            <p className="text-zinc-600 leading-relaxed">
+              Applying our non-parametric P90 buffer (+850 MW) completely absorbed 90% of all wind drops, saving an estimated £1.42M across January in peak cash-out surcharges.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Comparative Commercial Impact Table */}
+      <div className="bg-white border border-zinc-200 rounded-lg shadow-xs overflow-hidden">
+        <div className="p-4 sm:p-5 border-b border-zinc-200">
+          <h3 className="text-sm font-bold text-zinc-950 uppercase tracking-tight">
+            Commercial Impact: Unhedged vs Risk-Adjusted Procurement
+          </h3>
+          <p className="text-xs text-zinc-500 mt-0.5">
+            Empirical financial outcomes modeled across 744 hours of January 2026 UK power market conditions:
+          </p>
+        </div>
+
+        {/* Mobile Swipe Hint */}
+        <div className="sm:hidden px-4 py-1.5 bg-zinc-50 text-[11px] text-zinc-500 border-b border-zinc-100 flex items-center gap-1.5">
+          <ArrowRightLeft className="w-3 h-3 text-zinc-400 shrink-0" />
+          <span>Swipe horizontally to compare outcomes</span>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs font-tabular min-w-[550px]">
+            <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200">
+              <tr>
+                <th className="py-2.5 px-4 font-sans">Trading Strategy</th>
+                <th className="py-2.5 px-4 font-sans">Gate Closure Timing</th>
+                <th className="py-2.5 px-4 font-sans">Risk Mitigation Buffer</th>
+                <th className="py-2.5 px-4 font-sans">Imbalance Shortfall Exposure</th>
+                <th className="py-2.5 px-4 font-sans">Avoided Cash-out Losses</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-100">
+              <tr className="hover:bg-zinc-50/70 transition">
+                <td className="py-3 px-4 font-semibold text-zinc-900 font-sans">Legacy / Unhedged Baseline</td>
+                <td className="py-3 px-4 text-zinc-600 font-sans">Stale 08:00 Run</td>
+                <td className="py-3 px-4 text-zinc-500 font-sans">0 MW (Unbuffered)</td>
+                <td className="py-3 px-4 text-rose-700 font-semibold">1,124 MW Avg Miss</td>
+                <td className="py-3 px-4 text-zinc-500 font-sans">£0 (Full Penalty Exposure)</td>
+              </tr>
+              <tr className="bg-teal-50/40 hover:bg-teal-50/60 transition">
+                <td className="py-3 px-4 font-bold text-teal-900 font-sans flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-700" />
+                  <span>Gridbricks Risk-Adjusted Desk</span>
+                </td>
+                <td className="py-3 px-4 text-teal-950 font-semibold font-sans">Latest 11:00 Run</td>
+                <td className="py-3 px-4 text-teal-800 font-semibold font-sans">+850 MW P90 Cushion</td>
+                <td className="py-3 px-4 text-emerald-800 font-semibold">Under 180 MW Tail Risk</td>
+                <td className="py-3 px-4 text-emerald-800 font-bold">+£1,420,000 Saved</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
