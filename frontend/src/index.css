@@ -1,66 +1,26 @@
 @import "tailwindcss";
 
-@theme {
-  /* Canvas & Structural Surfaces */
-  --color-desk-bg:            #080B10; /* Deep obsidian workstation floor */
-  --color-desk-panel:         #0E131F; /* Primary panel surface */
-  --color-desk-panel-sub:     #0A0E17; /* Inset table & ladder surface */
-  --color-desk-hover:         #151C2C; /* Row hover state */
-  --color-desk-border:        #1A2234; /* Crisp 1px structural border */
-  --color-desk-border-subtle: #121824; /* Inner table divider */
-
-  /* Market Semantics */
-  --color-market-wind:        #00D2FF; /* Nordic Wind Electric Cyan */
-  --color-market-actual:      #FFFFFF; /* Actual Physical Gen (Stark Solid White) */
-  --color-market-thermal:     #FF9F1C; /* Net Thermal to Buy (Flame Amber) */
-  --color-market-demand:      #94A3B8; /* Customer Baseline Demand (Slate) */
-  --color-market-short:       #EF4444; /* Short Position / Cash-Out Penalty */
-  --color-market-surplus:     #10B981; /* Surplus Wind Spill / Long */
-  --color-market-hedge:       #8B5CF6; /* P90 Safety Buffer Reserve */
-  --color-market-warning:     #F59E0B; /* Gate Closure Urgency */
-
-  /* Typography */
-  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', monospace;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
 @layer base {
   body {
-    background-color: #080B10;
-    color: #e2e8f0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+    @apply bg-slate-950 text-slate-100 font-sans antialiased min-h-screen selection:bg-cyan-500 selection:text-slate-950;
   }
 }
 
-/* Monospace numbers utility */
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
-
-/* Institutional micro-scrollbars */
+/* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #080B10;
-}
-::-webkit-scrollbar-thumb {
-  background: #1A2234;
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #2a3754;
+  width: 6px;
+  height: 6px;
 }
 
-/* Hide scrollbar utility */
-.scrollbar-none {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+::-webkit-scrollbar-track {
+  background: #090d16;
 }
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }
