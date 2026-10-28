@@ -44,6 +44,16 @@ export interface ProcurementSummary {
   buffer_reserve_mwh: number;
 }
 
+export interface WeatherRegime {
+  regime: string;
+  code: string;
+  mean_wind_gw: number;
+  peak_ramp_mw_hr: number;
+  headline: string;
+  description: string;
+  avoided_cashout_surcharge_gbp: number;
+}
+
 export interface DayAheadForecastResponse {
   decision_date: string;
   cutoff_time: string;
@@ -57,6 +67,7 @@ export interface DayAheadForecastResponse {
   }[];
   metrics: AccuracyMetrics;
   procurement_summary: ProcurementSummary;
+  weather_regime?: WeatherRegime;
 }
 
 export interface ForecastEvolutionRun {

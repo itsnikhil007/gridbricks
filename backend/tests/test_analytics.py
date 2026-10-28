@@ -3,7 +3,12 @@ Unit tests for analytics statistical functions and procurement calculator
 """
 
 import pytest
-from backend.app.services.analytics import calculate_kpis, calculate_procurement_schedule, get_hourly_load_multipliers
+from backend.app.services.analytics import (
+    calculate_kpis,
+    calculate_procurement_schedule,
+    get_hourly_load_multipliers,
+    classify_weather_regime
+)
 
 def test_calculate_kpis_perfect_forecast():
     actuals = [100.0, 200.0, 300.0, 400.0]
@@ -57,3 +62,17 @@ def test_procurement_schedule():
     assert schedule[0]["buffered_thermal_mw"] == 20500.0
     assert summary["total_demand_mwh"] == 30000.0 * 24
     assert summary["total_thermal_procured_mwh"] == 20000.0 * 24
+
+def test_classify_weather_regime():
+    # Storm Front points
+    storm_pts = [{"generation": 13000.0 if h % 2 == 0 else 11500.0} for h in range(24)]
+    res = classify_weather_regime(storm_pts)
+    assert res["code"] == "ATLANTIC_STORM"
+    assert res["mean_wind_gw"] > 11.0
+
+    # Lull / Dunkelflaute points
+    lull_pts = [{"generation": 2500.0} for _ in range(24)]
+    res_lull = classify_weather_regime(lull_pts)
+    assert res_lull["code"] == "DUNKELFLAUTE"
+    assert res_lull["mean_wind_gw"] == 2.5
+

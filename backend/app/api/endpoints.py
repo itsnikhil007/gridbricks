@@ -10,7 +10,7 @@ from backend.app.services.data_service import (
     get_forecast_evolution,
     get_monthly_accuracy_analysis
 )
-from backend.app.services.analytics import calculate_procurement_schedule
+from backend.app.services.analytics import calculate_procurement_schedule, classify_weather_regime
 
 router = APIRouter()
 
@@ -57,6 +57,7 @@ def get_latest_forecast(
                 pt["surplus_wind_mw"] = proc["surplus_wind_mw"]
 
         data["procurement_summary"] = procurement["summary"]
+        data["weather_regime"] = classify_weather_regime(forecast_pts)
         return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

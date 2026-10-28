@@ -13,6 +13,7 @@ import type {
   ForecastEvolutionRun
 } from '../types';
 import { getLatestForecast, getForecastEvolution } from '../services/api';
+import { SmartDispatchWizard } from './SmartDispatchWizard';
 
 interface DecisionDeskProps {
   dates: DecisionDateOption[];
@@ -218,6 +219,21 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
 
   return (
     <div className="space-y-4 sm:space-y-6 w-full min-w-0 max-w-full">
+
+      {/* 1-CLICK AI SMART COPILOT & BUDGET OPTIMIZER */}
+      <SmartDispatchWizard
+        baseDemand={baseDemand}
+        setBaseDemand={setBaseDemand}
+        applySafetyBuffer={applySafetyBuffer}
+        setApplySafetyBuffer={setApplySafetyBuffer}
+        safetyBufferMw={safetyBufferMw}
+        summary={summary}
+        metrics={metrics}
+        weatherRegime={data.weather_regime}
+        deliveryDate={data.delivery_date}
+        cutoffTime={cutoffTime}
+        onExportCSV={handleExportCSV}
+      />
 
       {/* PHASE 2: CLIENT SCENARIOS & OPERATIONAL POSTURE BAR */}
       <div className="bg-white border border-zinc-200 rounded-lg p-3.5 sm:p-5 shadow-xs w-full min-w-0 max-w-full">
