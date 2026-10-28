@@ -66,7 +66,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[420px] text-zinc-500">
+      <div className="flex flex-col items-center justify-center min-h-[420px] text-zinc-500 w-full min-w-0">
         <Scale className="w-8 h-8 text-teal-600 animate-spin mb-3" />
         <p className="text-sm font-medium">Auditing January 2026 forecast accuracy across 744 hours...</p>
       </div>
@@ -75,7 +75,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
 
   if (error || !data) {
     return (
-      <div className="p-6 bg-rose-50 border border-rose-200 rounded-lg text-rose-900">
+      <div className="p-6 bg-rose-50 border border-rose-200 rounded-lg text-rose-900 w-full min-w-0">
         <p className="font-semibold text-sm">Error Loading Accuracy Lab</p>
         <p className="text-xs mt-1 text-rose-700">{error || 'Unknown error occurred'}</p>
       </div>
@@ -105,11 +105,11 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4 sm:space-y-6 w-full min-w-0 max-w-full">
 
       {/* Top Banner */}
-      <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-        <div>
+      <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 w-full min-w-0 max-w-full">
+        <div className="min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] sm:text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
               QUANTIFIED MODEL AUDIT // JANUARY 2026
@@ -119,7 +119,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
               744 Wholesale Hours
             </span>
           </div>
-          <h1 className="text-lg sm:text-xl font-bold text-zinc-950 mt-1 tracking-tight">
+          <h1 className="text-lg sm:text-xl font-bold text-zinc-950 mt-1 tracking-tight truncate">
             Accuracy, Reliability & Backtest Lab
           </h1>
           <p className="text-xs text-zinc-600 mt-0.5 leading-relaxed">
@@ -137,120 +137,120 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
       </div>
 
       {/* 744-HOUR EVALUATION SUMMARY STRIP (RESPONSIVE 4-CARD BRIEFING) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-200 rounded-lg overflow-hidden border border-zinc-200 shadow-xs">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-200 rounded-lg overflow-hidden border border-zinc-200 shadow-xs w-full min-w-0 max-w-full">
         
         {/* Card 1: MAE */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors">
+        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
           <div>
             <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider">Mean Absolute Error</span>
-              <span className="px-2 py-0.5 rounded-sm bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-medium">
+              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Mean Absolute Error</span>
+              <span className="px-2 py-0.5 rounded-sm bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-medium shrink-0">
                 Benchmark
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5">
+            <div className="flex items-baseline gap-1.5 flex-wrap">
               <span className="text-xl sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
                 {kpi.mae.toLocaleString()}
               </span>
               <span className="text-xs font-medium text-zinc-500">MW</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100">
+          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
             Average hourly forecast deviation across the month
           </p>
         </div>
 
         {/* Card 2: WAPE */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors">
+        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
           <div>
             <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider">Error Rate (WAPE)</span>
-              <span className="px-2 py-0.5 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium">
+              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Error Rate (WAPE)</span>
+              <span className="px-2 py-0.5 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium shrink-0">
                 High Fidelity
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5">
+            <div className="flex items-baseline gap-1.5 flex-wrap">
               <span className="text-xl sm:text-2xl font-bold font-tabular text-emerald-700 tracking-tight">
                 {kpi.wape}%
               </span>
               <span className="text-xs font-medium text-zinc-500">Volume Error</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100">
+          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
             Equivalent to <strong className="text-zinc-800 font-semibold">{(100 - kpi.wape).toFixed(1)}% accuracy</strong> on total energy
           </p>
         </div>
 
         {/* Card 3: Bias */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors">
+        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
           <div>
             <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider">Systematic Model Bias</span>
-              <span className="px-2 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-medium">
+              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Systematic Model Bias</span>
+              <span className="px-2 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-medium shrink-0">
                 Short Risk Tendency
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5">
+            <div className="flex items-baseline gap-1.5 flex-wrap">
               <span className="text-xl sm:text-2xl font-bold font-tabular text-amber-700 tracking-tight">
                 {kpi.mean_bias > 0 ? `+${kpi.mean_bias}` : kpi.mean_bias}
               </span>
               <span className="text-xs font-medium text-amber-800">MW</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100">
+          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
             Mild over-prediction bias; prompts safety cushion
           </p>
         </div>
 
         {/* Card 4: R² */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors">
+        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
           <div>
             <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider">Trajectory Fit (R²)</span>
-              <span className="px-2 py-0.5 rounded-sm bg-zinc-100 text-zinc-700 border border-zinc-200 text-[10px] font-medium">
+              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Trajectory Fit (R²)</span>
+              <span className="px-2 py-0.5 rounded-sm bg-zinc-100 text-zinc-700 border border-zinc-200 text-[10px] font-medium shrink-0">
                 Macro Weather
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5">
+            <div className="flex items-baseline gap-1.5 flex-wrap">
               <span className="text-xl sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
                 {kpi.r_squared}
               </span>
               <span className="text-xs font-medium text-zinc-500">Correlation</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100">
-            P90 Downside Risk bound: <strong className="text-zinc-800 font-tabular">+{Math.round(kpi.p90_error)} MW</strong>
+          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
+            P90 Downside Risk: <strong className="text-zinc-800 font-tabular">+{Math.round(kpi.p90_error)} MW</strong>
           </p>
         </div>
 
       </div>
 
       {/* 3 Plain-English Operational Insights */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-teal-600 shadow-xs space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 w-full min-w-0 max-w-full">
+        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-teal-600 shadow-xs space-y-2 min-w-0">
           <div className="flex items-center gap-1.5 text-teal-800 text-xs font-semibold uppercase tracking-wider">
-            <Lightbulb className="w-3.5 h-3.5" />
-            <span>Insight 1: Macro Weather Tracking</span>
+            <Lightbulb className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Insight 1: Macro Weather Tracking</span>
           </div>
           <p className="text-xs text-zinc-600 leading-relaxed">
             The Elexon wind forecast captured <strong className="text-zinc-900">89% of general wind shifts</strong> (R² = 0.89), reliably tracking major UK storm ramp-ups and wind lulls.
           </p>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-amber-600 shadow-xs space-y-2">
+        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-amber-600 shadow-xs space-y-2 min-w-0">
           <div className="flex items-center gap-1.5 text-amber-800 text-xs font-semibold uppercase tracking-wider">
-            <Clock className="w-3.5 h-3.5" />
-            <span>Insight 2: Morning Volatility</span>
+            <Clock className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Insight 2: Morning Volatility</span>
           </div>
           <p className="text-xs text-zinc-600 leading-relaxed">
             Forecasting error spikes during the <strong className="text-zinc-900">07:00–09:00 AM</strong> morning demand ramp. Applying an extra safety buffer during morning hours mitigates sudden balancing exposures.
           </p>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-emerald-600 shadow-xs space-y-2">
+        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-emerald-600 shadow-xs space-y-2 min-w-0">
           <div className="flex items-center gap-1.5 text-emerald-800 text-xs font-semibold uppercase tracking-wider">
-            <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>Insight 3: The P90 Safety Rule</span>
+            <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Insight 3: The P90 Safety Rule</span>
           </div>
           <p className="text-xs text-zinc-600 leading-relaxed">
             In 90% of hours, wind drop-offs were under <strong className="text-zinc-900">850 MW</strong>. Contracting an 850 MW thermal reserve protects your desk against 9 out of 10 sudden shortfalls.
@@ -259,21 +259,21 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
       </div>
 
       {/* Charts Row: Daily Timeline & Diurnal Hour-of-Day Risk */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full min-w-0 max-w-full">
 
         {/* Daily Accuracy Timeline */}
-        <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-4">
-            <div>
-              <h3 className="text-sm font-bold text-zinc-950 tracking-tight">
+        <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-4 min-w-0">
+            <div className="min-w-0">
+              <h3 className="text-sm font-bold text-zinc-950 tracking-tight truncate">
                 Daily Forecast Accuracy Across January 2026
               </h3>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-500 mt-0.5 truncate">
                 Day-by-day error metrics across all 31 delivery days.
               </p>
             </div>
 
-            <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-md border border-zinc-200 text-xs self-start sm:self-auto">
+            <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-md border border-zinc-200 text-xs self-start sm:self-auto shrink-0">
               <button
                 onClick={() => setSelectedMetric('mae')}
                 className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-sm font-medium transition cursor-pointer text-xs ${
@@ -307,7 +307,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
             </div>
           </div>
 
-          <div className="h-[250px] sm:h-[280px] w-full">
+          <div className="h-[250px] sm:h-[280px] w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={daily_breakdown} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#F4F4F5" />
@@ -342,24 +342,24 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
         </div>
 
         {/* Diurnal Hour-of-Day Risk Pattern */}
-        <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-            <div>
+        <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 min-w-0">
+            <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                <h3 className="text-sm font-bold text-zinc-950 tracking-tight">
+                <h3 className="text-sm font-bold text-zinc-950 tracking-tight truncate">
                   Diurnal 24-Hour Error Profile
                 </h3>
-                <span className="px-1.5 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-medium">
+                <span className="px-1.5 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-medium shrink-0">
                   07:00–09:00 AM Ramp Alert
                 </span>
               </div>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-500 mt-0.5 truncate">
                 Error profile averaged across the 24 hours of the delivery day.
               </p>
             </div>
           </div>
 
-          <div className="h-[250px] sm:h-[280px] w-full">
+          <div className="h-[250px] sm:h-[280px] w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={diurnal_profile} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#F4F4F5" />
@@ -391,13 +391,13 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
       </div>
 
       {/* Clean 31-Day Audit Table */}
-      <div className="bg-white border border-zinc-200 rounded-lg shadow-xs overflow-hidden">
-        <div className="p-4 sm:p-5 border-b border-zinc-200 flex items-center justify-between">
-          <div>
-            <h3 className="text-sm font-bold text-zinc-950 tracking-tight">
+      <div className="bg-white border border-zinc-200 rounded-lg shadow-xs overflow-hidden w-full min-w-0 max-w-full">
+        <div className="p-4 sm:p-5 border-b border-zinc-200 flex items-center justify-between min-w-0">
+          <div className="min-w-0">
+            <h3 className="text-sm font-bold text-zinc-950 tracking-tight truncate">
               January 2026 Daily Evaluation Log
             </h3>
-            <p className="text-xs text-zinc-500 mt-0.5">
+            <p className="text-xs text-zinc-500 mt-0.5 truncate">
               Click any column header to sort. Directional markers indicate over/under-prediction against outturn.
             </p>
           </div>
@@ -409,7 +409,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
           <span>Swipe horizontally to inspect all 31 delivery days</span>
         </div>
 
-        <div className="overflow-x-auto max-h-[500px]">
+        <div className="overflow-x-auto max-h-[500px] w-full min-w-0">
           <table className="w-full text-left text-xs font-tabular min-w-[650px]">
             <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200 sticky top-0 z-10 shadow-2xs">
               <tr>

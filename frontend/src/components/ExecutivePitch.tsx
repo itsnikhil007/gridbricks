@@ -6,10 +6,10 @@ import {
 
 export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onNavigateToDesk }) => {
   return (
-    <div className="space-y-4 sm:space-y-6 font-sans text-zinc-700">
+    <div className="space-y-4 sm:space-y-6 font-sans text-zinc-700 w-full min-w-0 max-w-full">
       
       {/* 1. Executive Briefing Banner */}
-      <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-5 sm:p-6 shadow-xs space-y-3">
+      <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-5 sm:p-6 shadow-xs space-y-3 w-full min-w-0 max-w-full">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-teal-800 bg-teal-50 px-2 py-0.5 rounded-sm border border-teal-200">
             COMMERCIAL DOSSIER // UK WHOLESALE POWER DESK
@@ -38,8 +38,8 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
       </div>
 
       {/* 2. 3 Core Value Pillars */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-        <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 w-full min-w-0 max-w-full">
+        <div className="bg-white border border-zinc-200 border-l-4 border-l-teal-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2 min-w-0">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-semibold text-teal-800 uppercase tracking-wider">PILLAR 1</span>
             <Target className="w-4 h-4 text-teal-600" />
@@ -50,7 +50,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
           </p>
         </div>
 
-        <div className="bg-white border border-zinc-200 border-l-4 border-l-amber-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2">
+        <div className="bg-white border border-zinc-200 border-l-4 border-l-amber-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2 min-w-0">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-semibold text-amber-800 uppercase tracking-wider">PILLAR 2</span>
             <PoundSterling className="w-4 h-4 text-amber-600" />
@@ -61,7 +61,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
           </p>
         </div>
 
-        <div className="bg-white border border-zinc-200 border-l-4 border-l-emerald-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2">
+        <div className="bg-white border border-zinc-200 border-l-4 border-l-emerald-600 rounded-lg p-4 sm:p-5 shadow-xs space-y-2 min-w-0">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">PILLAR 3</span>
             <ShieldAlert className="w-4 h-4 text-emerald-600" />
@@ -74,23 +74,23 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
       </div>
 
       {/* 3. January 2026 Pilot Audit Takeaways */}
-      <div className="bg-white border border-zinc-200 rounded-lg p-5 sm:p-6 shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 pb-3">
-          <div>
-            <h2 className="text-sm font-bold text-zinc-950 uppercase tracking-tight">
+      <div className="bg-white border border-zinc-200 rounded-lg p-5 sm:p-6 shadow-xs space-y-4 w-full min-w-0 max-w-full">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 pb-3 min-w-0">
+          <div className="min-w-0">
+            <h2 className="text-sm font-bold text-zinc-950 uppercase tracking-tight truncate">
               January 2026 Forensic Audit Findings (744 Hours)
             </h2>
-            <p className="text-xs text-zinc-500 mt-0.5">
+            <p className="text-xs text-zinc-500 mt-0.5 truncate">
               Quantified empirical evidence from 744 settlement hours of Elexon BMRS outturn:
             </p>
           </div>
-          <span className="text-xs px-2.5 py-1 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold self-start sm:self-auto">
+          <span className="text-xs px-2.5 py-1 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold self-start sm:self-auto shrink-0">
             £1.42M AVOIDED CASH-OUT PENALTY
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-xs">
-          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-xs w-full min-w-0">
+          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5 min-w-0">
             <div className="flex items-center gap-1.5 text-teal-800 font-semibold">
               <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
               <span>Finding 1: High Macro Tracking (R² = 0.89)</span>
@@ -100,7 +100,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
             </p>
           </div>
 
-          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
+          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5 min-w-0">
             <div className="flex items-center gap-1.5 text-amber-800 font-semibold">
               <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
               <span>Finding 2: The 07:00–09:00 AM Morning Ramp Risk</span>
@@ -110,7 +110,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
             </p>
           </div>
 
-          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
+          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5 min-w-0">
             <div className="flex items-center gap-1.5 text-emerald-800 font-semibold">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Finding 3: Positive Model Bias (+312 MW Over-prediction)</span>
@@ -120,7 +120,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
             </p>
           </div>
 
-          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5">
+          <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-md space-y-1.5 min-w-0">
             <div className="flex items-center gap-1.5 text-zinc-900 font-semibold">
               <CheckCircle2 className="w-4 h-4 text-zinc-700 shrink-0" />
               <span>Finding 4: P90 Safety Sizing (+850 MW)</span>
@@ -133,12 +133,12 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
       </div>
 
       {/* 4. Comparative Commercial Impact Table */}
-      <div className="bg-white border border-zinc-200 rounded-lg shadow-xs overflow-hidden">
-        <div className="p-4 sm:p-5 border-b border-zinc-200">
-          <h3 className="text-sm font-bold text-zinc-950 uppercase tracking-tight">
+      <div className="bg-white border border-zinc-200 rounded-lg shadow-xs overflow-hidden w-full min-w-0 max-w-full">
+        <div className="p-4 sm:p-5 border-b border-zinc-200 min-w-0">
+          <h3 className="text-sm font-bold text-zinc-950 uppercase tracking-tight truncate">
             Commercial Impact: Unhedged vs Risk-Adjusted Procurement
           </h3>
-          <p className="text-xs text-zinc-500 mt-0.5">
+          <p className="text-xs text-zinc-500 mt-0.5 truncate">
             Empirical financial outcomes modeled across 744 hours of January 2026 UK power market conditions:
           </p>
         </div>
@@ -149,7 +149,7 @@ export const ExecutivePitch: React.FC<{ onNavigateToDesk: () => void }> = ({ onN
           <span>Swipe horizontally to compare outcomes</span>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto w-full min-w-0">
           <table className="w-full text-left text-xs font-tabular min-w-[550px]">
             <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200">
               <tr>

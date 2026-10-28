@@ -48,7 +48,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F9FB] text-zinc-900 flex flex-col font-sans">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#F9F9FB] text-zinc-900 flex flex-col font-sans">
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -69,8 +69,8 @@ export function App() {
         </div>
       )}
 
-      {/* Main Content Workspace */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
+      {/* Main Content Workspace - min-w-0 and max-w-full prevent horizontal blowout */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 min-w-0 max-w-full">
         {activeTab === 'decision' && (
           <DecisionDesk
             dates={dates}
@@ -94,7 +94,7 @@ export function App() {
       </main>
 
       {/* Clean Footer */}
-      <footer className="border-t border-zinc-200 bg-white py-5 sm:py-6 text-xs text-zinc-500">
+      <footer className="border-t border-zinc-200 bg-white py-5 sm:py-6 text-xs text-zinc-500 w-full max-w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
           <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
             <span className="font-semibold text-zinc-800">Gridbricks // UK Power Desk</span>
