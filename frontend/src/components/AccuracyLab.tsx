@@ -108,7 +108,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
     <div className="space-y-4 sm:space-y-6 w-full min-w-0 max-w-full">
 
       {/* Top Banner */}
-      <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 w-full min-w-0 max-w-full">
+      <div className="bg-white border border-zinc-200 rounded-lg p-3.5 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 w-full min-w-0 max-w-full">
         <div className="min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] sm:text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
@@ -119,107 +119,107 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
               744 Wholesale Hours
             </span>
           </div>
-          <h1 className="text-lg sm:text-xl font-bold text-zinc-950 mt-1 tracking-tight truncate">
+          <h1 className="text-base sm:text-xl font-bold text-zinc-950 mt-1 tracking-tight truncate">
             Accuracy, Reliability & Backtest Lab
           </h1>
-          <p className="text-xs text-zinc-600 mt-0.5 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-zinc-600 mt-0.5 leading-relaxed">
             Empirical evaluation of day-ahead Elexon BMRS WINDFOR forecasts against actual FUELHH settlement outturn across all 31 days.
           </p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-800 rounded-md text-xs font-semibold shadow-xs transition shrink-0 cursor-pointer active:scale-95 self-start sm:self-auto"
+          className="flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-800 rounded-md text-xs font-semibold shadow-xs transition shrink-0 cursor-pointer active:scale-95 w-full sm:w-auto"
         >
           <Download className="w-3.5 h-3.5 text-zinc-600" />
           <span>Export Full Month Audit (CSV)</span>
         </button>
       </div>
 
-      {/* 744-HOUR EVALUATION SUMMARY STRIP (RESPONSIVE 4-CARD BRIEFING) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-200 rounded-lg overflow-hidden border border-zinc-200 shadow-xs w-full min-w-0 max-w-full">
+      {/* 744-HOUR EVALUATION SUMMARY STRIP (2x2 on Mobile, 4-Card on Desktop) */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-px bg-zinc-200/70 sm:bg-zinc-200 rounded-lg overflow-hidden sm:border border-zinc-200 sm:shadow-xs w-full min-w-0 max-w-full">
         
         {/* Card 1: MAE */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Mean Absolute Error</span>
-              <span className="px-2 py-0.5 rounded-sm bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-medium shrink-0">
-                Benchmark
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate">MAE Error</span>
+              <span className="px-1.5 py-0.5 rounded-sm bg-teal-50 text-teal-800 border border-teal-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                Bench
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
                 {kpi.mae.toLocaleString()}
               </span>
-              <span className="text-xs font-medium text-zinc-500">MW</span>
+              <span className="text-[11px] sm:text-xs font-medium text-zinc-500">MW</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
-            Average hourly forecast deviation across the month
+          <p className="text-[10px] sm:text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
+            Hourly deviation
           </p>
         </div>
 
         {/* Card 2: WAPE */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Error Rate (WAPE)</span>
-              <span className="px-2 py-0.5 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium shrink-0">
-                High Fidelity
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate">WAPE Rate</span>
+              <span className="px-1.5 py-0.5 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                High
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-emerald-700 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-emerald-700 tracking-tight">
                 {kpi.wape}%
               </span>
-              <span className="text-xs font-medium text-zinc-500">Volume Error</span>
+              <span className="text-[11px] sm:text-xs font-medium text-zinc-500">Error</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
-            Equivalent to <strong className="text-zinc-800 font-semibold">{(100 - kpi.wape).toFixed(1)}% accuracy</strong> on total energy
+          <p className="text-[10px] sm:text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
+            {(100 - kpi.wape).toFixed(1)}% accuracy
           </p>
         </div>
 
         {/* Card 3: Bias */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Systematic Model Bias</span>
-              <span className="px-2 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-medium shrink-0">
-                Short Risk Tendency
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate">Model Bias</span>
+              <span className="px-1.5 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                Tendency
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-amber-700 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-amber-700 tracking-tight">
                 {kpi.mean_bias > 0 ? `+${kpi.mean_bias}` : kpi.mean_bias}
               </span>
-              <span className="text-xs font-medium text-amber-800">MW</span>
+              <span className="text-[11px] sm:text-xs font-medium text-amber-800">MW</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
-            Mild over-prediction bias; prompts safety cushion
+          <p className="text-[10px] sm:text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
+            Over-prediction
           </p>
         </div>
 
         {/* Card 4: R² */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">Trajectory Fit (R²)</span>
-              <span className="px-2 py-0.5 rounded-sm bg-zinc-100 text-zinc-700 border border-zinc-200 text-[10px] font-medium shrink-0">
-                Macro Weather
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate">Trajectory (R²)</span>
+              <span className="px-1.5 py-0.5 rounded-sm bg-zinc-100 text-zinc-700 border border-zinc-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                Weather
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
                 {kpi.r_squared}
               </span>
-              <span className="text-xs font-medium text-zinc-500">Correlation</span>
+              <span className="text-[11px] sm:text-xs font-medium text-zinc-500">Fit</span>
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
-            P90 Downside Risk: <strong className="text-zinc-800 font-tabular">+{Math.round(kpi.p90_error)} MW</strong>
+          <p className="text-[10px] sm:text-xs text-zinc-500 mt-2 pt-2 border-t border-zinc-100 truncate">
+            P90: +{Math.round(kpi.p90_error)} MW
           </p>
         </div>
 
@@ -227,32 +227,32 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
 
       {/* 3 Plain-English Operational Insights */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 w-full min-w-0 max-w-full">
-        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-teal-600 shadow-xs space-y-2 min-w-0">
+        <div className="p-3.5 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-teal-600 shadow-xs space-y-1.5 sm:space-y-2 min-w-0">
           <div className="flex items-center gap-1.5 text-teal-800 text-xs font-semibold uppercase tracking-wider">
             <Lightbulb className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">Insight 1: Macro Weather Tracking</span>
+            <span className="truncate">Insight 1: Macro Tracking</span>
           </div>
-          <p className="text-xs text-zinc-600 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-zinc-600 leading-relaxed">
             The Elexon wind forecast captured <strong className="text-zinc-900">89% of general wind shifts</strong> (R² = 0.89), reliably tracking major UK storm ramp-ups and wind lulls.
           </p>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-amber-600 shadow-xs space-y-2 min-w-0">
+        <div className="p-3.5 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-amber-600 shadow-xs space-y-1.5 sm:space-y-2 min-w-0">
           <div className="flex items-center gap-1.5 text-amber-800 text-xs font-semibold uppercase tracking-wider">
             <Clock className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">Insight 2: Morning Volatility</span>
           </div>
-          <p className="text-xs text-zinc-600 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-zinc-600 leading-relaxed">
             Forecasting error spikes during the <strong className="text-zinc-900">07:00–09:00 AM</strong> morning demand ramp. Applying an extra safety buffer during morning hours mitigates sudden balancing exposures.
           </p>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-emerald-600 shadow-xs space-y-2 min-w-0">
+        <div className="p-3.5 sm:p-5 rounded-lg bg-white border border-zinc-200 border-l-4 border-l-emerald-600 shadow-xs space-y-1.5 sm:space-y-2 min-w-0">
           <div className="flex items-center gap-1.5 text-emerald-800 text-xs font-semibold uppercase tracking-wider">
             <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">Insight 3: The P90 Safety Rule</span>
           </div>
-          <p className="text-xs text-zinc-600 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-zinc-600 leading-relaxed">
             In 90% of hours, wind drop-offs were under <strong className="text-zinc-900">850 MW</strong>. Contracting an 850 MW thermal reserve protects your desk against 9 out of 10 sudden shortfalls.
           </p>
         </div>
@@ -262,13 +262,13 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full min-w-0 max-w-full">
 
         {/* Daily Accuracy Timeline */}
-        <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-4 min-w-0">
+        <div className="bg-white border border-zinc-200 rounded-lg p-3.5 sm:p-5 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3 sm:mb-4 min-w-0">
             <div className="min-w-0">
               <h3 className="text-sm font-bold text-zinc-950 tracking-tight truncate">
                 Daily Forecast Accuracy Across January 2026
               </h3>
-              <p className="text-xs text-zinc-500 mt-0.5 truncate">
+              <p className="text-[11px] sm:text-xs text-zinc-500 mt-0.5 truncate">
                 Day-by-day error metrics across all 31 delivery days.
               </p>
             </div>
@@ -276,7 +276,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
             <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-md border border-zinc-200 text-xs self-start sm:self-auto shrink-0">
               <button
                 onClick={() => setSelectedMetric('mae')}
-                className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-sm font-medium transition cursor-pointer text-xs ${
+                className={`px-2 py-1 rounded-sm font-medium transition cursor-pointer text-xs ${
                   selectedMetric === 'mae' 
                     ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200' 
                     : 'text-zinc-600 hover:text-zinc-950'
@@ -286,7 +286,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
               </button>
               <button
                 onClick={() => setSelectedMetric('bias')}
-                className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-sm font-medium transition cursor-pointer text-xs ${
+                className={`px-2 py-1 rounded-sm font-medium transition cursor-pointer text-xs ${
                   selectedMetric === 'bias' 
                     ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200' 
                     : 'text-zinc-600 hover:text-zinc-950'
@@ -296,7 +296,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
               </button>
               <button
                 onClick={() => setSelectedMetric('wape')}
-                className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-sm font-medium transition cursor-pointer text-xs ${
+                className={`px-2 py-1 rounded-sm font-medium transition cursor-pointer text-xs ${
                   selectedMetric === 'wape' 
                     ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200' 
                     : 'text-zinc-600 hover:text-zinc-950'
@@ -307,9 +307,9 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
             </div>
           </div>
 
-          <div className="h-[250px] sm:h-[280px] w-full min-w-0">
+          <div className="h-[240px] sm:h-[280px] w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={daily_breakdown} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+              <BarChart data={daily_breakdown} margin={{ top: 10, right: 8, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#F4F4F5" />
                 <XAxis 
                   dataKey="delivery_date" 
@@ -317,7 +317,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
                   tick={{ fontSize: 9 }}
                   tickFormatter={(val) => val.substring(8, 10)} 
                 />
-                <YAxis stroke="#71717A" tick={{ fontSize: 10 }} unit={selectedMetric === 'wape' ? '%' : ' MW'} />
+                <YAxis stroke="#71717A" tick={{ fontSize: 9 }} unit={selectedMetric === 'wape' ? '%' : ' MW'} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: '#FFFFFF', 
@@ -342,8 +342,8 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
         </div>
 
         {/* Diurnal Hour-of-Day Risk Pattern */}
-        <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 min-w-0">
+        <div className="bg-white border border-zinc-200 rounded-lg p-3.5 sm:p-5 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 sm:mb-4 min-w-0">
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                 <h3 className="text-sm font-bold text-zinc-950 tracking-tight truncate">
@@ -353,18 +353,18 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
                   07:00–09:00 AM Ramp Alert
                 </span>
               </div>
-              <p className="text-xs text-zinc-500 mt-0.5 truncate">
+              <p className="text-[11px] sm:text-xs text-zinc-500 mt-0.5 truncate">
                 Error profile averaged across the 24 hours of the delivery day.
               </p>
             </div>
           </div>
 
-          <div className="h-[250px] sm:h-[280px] w-full min-w-0">
+          <div className="h-[240px] sm:h-[280px] w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={diurnal_profile} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+              <LineChart data={diurnal_profile} margin={{ top: 10, right: 8, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#F4F4F5" />
-                <XAxis dataKey="hour_label" stroke="#71717A" tick={{ fontSize: 10 }} />
-                <YAxis stroke="#71717A" tick={{ fontSize: 10 }} unit=" MW" />
+                <XAxis dataKey="hour_label" stroke="#71717A" tick={{ fontSize: 9 }} />
+                <YAxis stroke="#71717A" tick={{ fontSize: 9 }} unit=" MW" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: '#FFFFFF', 
@@ -378,8 +378,8 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
                     name
                   ]}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '6px' }} />
-                <ReferenceArea x1="07:00" x2="09:00" fill="#FEF3C7" fillOpacity={0.6} label={{ value: '07-09 Ramp', fill: '#92400E', fontSize: 10, position: 'insideTop' }} />
+                <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '6px' }} />
+                <ReferenceArea x1="07:00" x2="09:00" fill="#FEF3C7" fillOpacity={0.6} label={{ value: '07-09 Ramp', fill: '#92400E', fontSize: 9, position: 'insideTop' }} />
                 <ReferenceLine y={0} stroke="#A1A1AA" strokeDasharray="3 3" />
                 <Line type="monotone" dataKey="mae" name="Average Error (MAE MW)" stroke="#0D9488" strokeWidth={2.5} dot={{ r: 2 }} />
                 <Line type="monotone" dataKey="mean_bias" name="Forecast Bias (MW)" stroke="#D97706" strokeWidth={2} strokeDasharray="3 3" dot={{ r: 2 }} />
@@ -390,30 +390,30 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
 
       </div>
 
-      {/* Clean 31-Day Audit Table */}
+      {/* Clean 31-Day Audit Table with Sticky Date Column on Mobile */}
       <div className="bg-white border border-zinc-200 rounded-lg shadow-xs overflow-hidden w-full min-w-0 max-w-full">
-        <div className="p-4 sm:p-5 border-b border-zinc-200 flex items-center justify-between min-w-0">
+        <div className="p-3.5 sm:p-5 border-b border-zinc-200 flex items-center justify-between min-w-0">
           <div className="min-w-0">
             <h3 className="text-sm font-bold text-zinc-950 tracking-tight truncate">
               January 2026 Daily Evaluation Log
             </h3>
-            <p className="text-xs text-zinc-500 mt-0.5 truncate">
+            <p className="text-[11px] sm:text-xs text-zinc-500 mt-0.5 truncate">
               Click any column header to sort. Directional markers indicate over/under-prediction against outturn.
             </p>
           </div>
         </div>
 
         {/* Mobile Swipe Hint */}
-        <div className="sm:hidden px-4 py-1.5 bg-zinc-50 text-[11px] text-zinc-500 border-b border-zinc-100 flex items-center gap-1.5">
+        <div className="sm:hidden px-3.5 py-1.5 bg-zinc-50 text-[10px] text-zinc-500 border-b border-zinc-100 flex items-center gap-1.5">
           <ArrowRightLeft className="w-3 h-3 text-zinc-400 shrink-0" />
-          <span>Swipe horizontally to inspect all 31 delivery days</span>
+          <span>Swipe horizontally • Delivery Date remains locked</span>
         </div>
 
         <div className="overflow-x-auto max-h-[500px] w-full min-w-0">
           <table className="w-full text-left text-xs font-tabular min-w-[650px]">
-            <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200 sticky top-0 z-10 shadow-2xs">
+            <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200 sticky top-0 z-20 shadow-2xs">
               <tr>
-                <th className="py-2.5 px-3 sm:px-4 font-sans cursor-pointer hover:text-zinc-950 transition" onClick={() => handleSort('delivery_date')}>
+                <th className="py-2.5 px-3 sm:px-4 font-sans sticky left-0 bg-zinc-50 z-30 shadow-2xs cursor-pointer hover:text-zinc-950 transition" onClick={() => handleSort('delivery_date')}>
                   Delivery Date {renderSortIndicator('delivery_date')}
                 </th>
                 <th className="py-2.5 px-3 sm:px-4 font-sans cursor-pointer hover:text-zinc-950 transition" onClick={() => handleSort('mean_actual')}>
@@ -439,7 +439,7 @@ export const AccuracyLab: React.FC<AccuracyLabProps> = ({ cutoffTime }) => {
             <tbody className="divide-y divide-zinc-100">
               {sortedDays.map((d: any) => (
                 <tr key={d.decision_date} className="hover:bg-zinc-50/80 transition-colors">
-                  <td className="py-2 px-3 sm:px-4 text-zinc-900 font-semibold font-sans">{d.delivery_date}</td>
+                  <td className="py-2 px-3 sm:px-4 text-zinc-900 font-semibold font-sans sticky left-0 bg-white z-10 shadow-2xs">{d.delivery_date}</td>
                   <td className="py-2 px-3 sm:px-4 text-zinc-700">{d.mean_actual.toLocaleString()} MW</td>
                   <td className="py-2 px-3 sm:px-4 text-teal-700 font-semibold">{d.mean_forecast.toLocaleString()} MW</td>
                   <td className="py-2 px-3 sm:px-4 text-amber-700 font-semibold">{d.mae.toLocaleString()} MW</td>

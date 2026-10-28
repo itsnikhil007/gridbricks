@@ -220,8 +220,8 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
     <div className="space-y-4 sm:space-y-6 w-full min-w-0 max-w-full">
 
       {/* PHASE 2: CLIENT SCENARIOS & OPERATIONAL POSTURE BAR */}
-      <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-5 shadow-xs w-full min-w-0 max-w-full">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-5 border-b border-zinc-100 min-w-0">
+      <div className="bg-white border border-zinc-200 rounded-lg p-3.5 sm:p-5 shadow-xs w-full min-w-0 max-w-full">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-5 border-b border-zinc-100 min-w-0">
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
               <span className="text-[10px] sm:text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
@@ -232,7 +232,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                 {cutoffTime} GMT Gate Closure Run
               </span>
             </div>
-            <h1 className="text-lg sm:text-xl font-bold text-zinc-950 mt-1 tracking-tight truncate">
+            <h1 className="text-base sm:text-xl font-bold text-zinc-950 mt-1 tracking-tight truncate">
               Day-Ahead Power Dispatch Desk
             </h1>
             <p className="text-xs text-zinc-600 mt-0.5 leading-relaxed">
@@ -240,8 +240,8 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
             </p>
           </div>
 
-          {/* Quick Date Switcher */}
-          <div className="flex items-center gap-2 shrink-0 self-start lg:self-center">
+          {/* Quick Date Switcher (Desktop) */}
+          <div className="hidden sm:flex items-center gap-2 shrink-0 self-start lg:self-center">
             <span className="text-xs text-zinc-500 font-medium">Delivery Date:</span>
             <div className="flex items-center gap-1.5 bg-zinc-50 border border-zinc-200 rounded-md px-2.5 py-1.5 text-xs shadow-2xs">
               <Calendar className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
@@ -261,10 +261,10 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
         </div>
 
         {/* Client Scenario Controls */}
-        <div className="pt-4 sm:pt-5 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch min-w-0 w-full">
+        <div className="pt-3.5 sm:pt-5 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-stretch min-w-0 w-full">
           
           {/* Preset Buttons & Slider */}
-          <div className="lg:col-span-7 space-y-3 flex flex-col justify-between min-w-0">
+          <div className="lg:col-span-7 space-y-2.5 sm:space-y-3 flex flex-col justify-between min-w-0">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-zinc-900 flex items-center gap-1.5">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-teal-600" />
@@ -283,14 +283,14 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                   <button
                     key={p.value}
                     onClick={() => setBaseDemand(p.value)}
-                    className={`py-1.5 px-2 sm:px-3 rounded-md text-xs font-medium transition cursor-pointer border text-center ${
+                    className={`py-1.5 px-1.5 sm:px-3 rounded-md text-xs font-medium transition cursor-pointer border text-center ${
                       isActive
                         ? 'bg-zinc-900 text-white border-zinc-900 shadow-xs'
                         : 'bg-zinc-50 hover:bg-zinc-100 text-zinc-700 border-zinc-200'
                     }`}
                   >
-                    <span className="block truncate">{p.label}</span>
-                    <span className={`block text-[10px] ${isActive ? 'text-zinc-300' : 'text-zinc-500'}`}>
+                    <span className="block truncate text-[11px] sm:text-xs">{p.label}</span>
+                    <span className={`block text-[9px] sm:text-[10px] ${isActive ? 'text-zinc-300' : 'text-zinc-500'}`}>
                       {p.desc}
                     </span>
                   </button>
@@ -299,13 +299,13 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
             </div>
 
             {/* Touch-Friendly Custom slider with - / + nudge buttons */}
-            <div className="flex items-center gap-2 pt-1 min-w-0">
+            <div className="flex items-center gap-2 pt-0.5 sm:pt-1 min-w-0">
               <button
                 onClick={() => adjustDemand(-1000)}
                 title="Decrease demand by 1,000 MW"
-                className="p-1 rounded bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 cursor-pointer transition active:scale-95 shrink-0"
+                className="p-1 sm:p-1.5 rounded bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 cursor-pointer transition active:scale-95 shrink-0"
               >
-                <Minus className="w-3 h-3" />
+                <Minus className="w-3.5 h-3.5" />
               </button>
 
               <input
@@ -322,45 +322,45 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
               <button
                 onClick={() => adjustDemand(1000)}
                 title="Increase demand by 1,000 MW"
-                className="p-1 rounded bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 cursor-pointer transition active:scale-95 shrink-0"
+                className="p-1 sm:p-1.5 rounded bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 cursor-pointer transition active:scale-95 shrink-0"
               >
-                <Plus className="w-3 h-3" />
+                <Plus className="w-3.5 h-3.5" />
               </button>
 
-              <span className="text-[11px] text-zinc-500 whitespace-nowrap font-tabular shrink-0 hidden xs:inline">
+              <span className="text-[10px] sm:text-[11px] text-zinc-500 whitespace-nowrap font-tabular shrink-0 hidden xs:inline">
                 15–45 GW
               </span>
             </div>
           </div>
 
           {/* Downside Risk Posture Toggle */}
-          <div className="lg:col-span-5 bg-zinc-50 border border-zinc-200 rounded-lg p-3.5 sm:p-4 flex flex-col justify-between min-w-0">
+          <div className="lg:col-span-5 bg-zinc-50 border border-zinc-200 rounded-lg p-3 sm:p-4 flex flex-col justify-between min-w-0">
             <div>
-              <div className="flex items-center justify-between mb-1.5">
+              <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-semibold text-zinc-900 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-amber-700" />
+                  <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0" />
                   <span>Downside Risk Posture</span>
                 </span>
-                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-sm border ${
+                <span className={`text-[10px] font-semibold px-1.5 sm:px-2 py-0.5 rounded-sm border ${
                   applySafetyBuffer 
                     ? 'bg-emerald-50 text-emerald-800 border-emerald-200' 
                     : 'bg-zinc-200/60 text-zinc-700 border-zinc-300'
                 }`}>
-                  {applySafetyBuffer ? `+${safetyBufferMw} MW P90 Hedge` : 'Unhedged Baseline'}
+                  {applySafetyBuffer ? `+${safetyBufferMw} MW P90` : 'Unhedged P50'}
                 </span>
               </div>
 
-              <p className="text-[11px] text-zinc-600 leading-relaxed mb-3">
+              <p className="text-[10px] sm:text-[11px] text-zinc-600 leading-relaxed mb-2.5">
                 {applySafetyBuffer 
                   ? 'Hedging active: Procures an additional reserve cushion to protect against wind drop-offs and extreme System Buy Price (SBP) cash-out charges.'
                   : 'Baseline P50: Purchases the bare minimum expected residual thermal requirement. Exposes desk to spot imbalance penalties if wind lulls.'}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-1">
+            <div className="grid grid-cols-2 gap-2 pt-0.5">
               <button
                 onClick={() => setApplySafetyBuffer(false)}
-                className={`py-2 px-3 rounded-md text-xs font-medium transition cursor-pointer border text-center ${
+                className={`py-2 px-2.5 rounded-md text-xs font-medium transition cursor-pointer border text-center ${
                   !applySafetyBuffer
                     ? 'bg-zinc-900 text-white border-zinc-900 shadow-xs'
                     : 'bg-white hover:bg-zinc-100 text-zinc-700 border-zinc-200'
@@ -370,7 +370,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
               </button>
               <button
                 onClick={() => setApplySafetyBuffer(true)}
-                className={`py-2 px-3 rounded-md text-xs font-medium transition cursor-pointer border text-center ${
+                className={`py-2 px-2.5 rounded-md text-xs font-medium transition cursor-pointer border text-center ${
                   applySafetyBuffer
                     ? 'bg-emerald-700 text-white border-emerald-700 shadow-xs font-semibold'
                     : 'bg-white hover:bg-zinc-100 text-zinc-700 border-zinc-200'
@@ -384,149 +384,147 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
         </div>
       </div>
 
-      {/* PHASE 3: EXECUTIVE SYNTHESIS LEDGER (RESPONSIVE 4-CARD BRIEFING) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-200 rounded-lg overflow-hidden border border-zinc-200 shadow-xs w-full min-w-0 max-w-full">
+      {/* PHASE 3: EXECUTIVE SYNTHESIS LEDGER (2x2 on Mobile, 4-Card on Desktop) */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-px bg-zinc-200/70 sm:bg-zinc-200 rounded-lg overflow-hidden sm:border border-zinc-200 sm:shadow-xs w-full min-w-0 max-w-full">
         
         {/* Card 1: Total Customer Demand */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">
-                1. Committed Load
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate">
+                1. Demand
               </span>
-              <span className="px-2 py-0.5 rounded-sm bg-zinc-100 text-zinc-700 border border-zinc-200 text-[10px] font-medium shrink-0">
-                Total Need
+              <span className="px-1.5 py-0.5 rounded-sm bg-zinc-100 text-zinc-700 border border-zinc-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                Total
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
                 {Math.round(summary.total_demand_mwh).toLocaleString()}
               </span>
-              <span className="text-xs font-medium text-zinc-500">MWh</span>
+              <span className="text-[11px] sm:text-xs font-medium text-zinc-500">MWh</span>
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-zinc-100 text-xs text-zinc-500 truncate">
-            Peak: <strong className="text-zinc-800 font-tabular">{baseDemand.toLocaleString()} MW</strong> • 24h Profile
+          <div className="mt-2 pt-2 border-t border-zinc-100 text-[10px] sm:text-xs text-zinc-500 truncate">
+            Peak: <strong className="text-zinc-800 font-tabular">{baseDemand.toLocaleString()} MW</strong>
           </div>
         </div>
 
         {/* Card 2: Expected Wind Supply (British Wind Teal) */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">
-                2. Renewable Generation
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate text-teal-800">
+                2. Wind Supply
               </span>
-              <span className="px-2 py-0.5 rounded-sm bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-medium shrink-0">
-                {summary.wind_penetration_pct}% Portfolio
+              <span className="px-1.5 py-0.5 rounded-sm bg-teal-50 text-teal-800 border border-teal-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                {summary.wind_penetration_pct}%
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-teal-700 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-teal-700 tracking-tight">
                 {Math.round(summary.total_wind_forecast_mwh).toLocaleString()}
               </span>
-              <span className="text-xs font-medium text-teal-800">MWh</span>
+              <span className="text-[11px] sm:text-xs font-medium text-teal-800">MWh</span>
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-zinc-100 text-xs text-zinc-500 truncate">
-            Zero-carbon wind displacing wholesale spend
+          <div className="mt-2 pt-2 border-t border-zinc-100 text-[10px] sm:text-xs text-zinc-500 truncate">
+            Zero-carbon energy
           </div>
         </div>
 
         {/* Card 3: Net Thermal To Buy (Warm Copper / Ochre) */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">
-                3. EPEX Auction Order
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate text-amber-800">
+                3. Buy Order
               </span>
-              <span className="px-2 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-medium shrink-0">
-                Action Required
+              <span className="px-1.5 py-0.5 rounded-sm bg-amber-50 text-amber-800 border border-amber-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                EPEX DA
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-amber-700 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-amber-700 tracking-tight">
                 {Math.round(applySafetyBuffer ? summary.total_buffered_procured_mwh : summary.total_thermal_procured_mwh).toLocaleString()}
               </span>
-              <span className="text-xs font-medium text-amber-800">MWh</span>
+              <span className="text-[11px] sm:text-xs font-medium text-amber-800">MWh</span>
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-zinc-100 text-xs text-zinc-500 truncate">
-            {applySafetyBuffer 
-              ? `Includes +${(safetyBufferMw * 24).toLocaleString()} MWh safety cushion`
-              : `Residual ${summary.thermal_share_pct}% procurement order`}
+          <div className="mt-2 pt-2 border-t border-zinc-100 text-[10px] sm:text-xs text-zinc-500 truncate">
+            {applySafetyBuffer ? `+${(safetyBufferMw * 24).toLocaleString()} MWh cushion` : `Residual ${summary.thermal_share_pct}%`}
           </div>
         </div>
 
         {/* Card 4: Forecast Reliability & Commercial Value */}
-        <div className="bg-white p-4 sm:p-5 flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0">
+        <div className="bg-white p-3 sm:p-5 rounded-lg sm:rounded-none flex flex-col justify-between hover:bg-zinc-50/50 transition-colors min-w-0 shadow-2xs sm:shadow-none border border-zinc-200 sm:border-none">
           <div>
-            <div className="flex items-center justify-between text-zinc-500 mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider truncate">
-                4. Assurance & Value
+            <div className="flex items-center justify-between text-zinc-500 mb-1.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider truncate">
+                4. Value
               </span>
-              <span className="px-2 py-0.5 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium shrink-0">
-                £1.42M Hedged P&L
+              <span className="px-1.5 py-0.5 rounded-sm bg-emerald-50 text-emerald-800 border border-emerald-200 text-[9px] sm:text-[10px] font-medium shrink-0">
+                £1.42M
               </span>
             </div>
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
+            <div className="flex items-baseline gap-1 flex-wrap">
+              <span className="text-lg sm:text-2xl font-bold font-tabular text-zinc-950 tracking-tight">
                 {(100 - metrics.wape).toFixed(1)}%
               </span>
-              <span className="text-xs font-medium text-zinc-500">Trust Index</span>
+              <span className="text-[11px] sm:text-xs font-medium text-zinc-500">Trust</span>
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-zinc-100 text-xs text-zinc-500 truncate">
-            MAE: ±{metrics.mae} MW • Bias: {metrics.mean_bias > 0 ? '+' : ''}{metrics.mean_bias} MW
+          <div className="mt-2 pt-2 border-t border-zinc-100 text-[10px] sm:text-xs text-zinc-500 truncate">
+            MAE: ±{metrics.mae} MW
           </div>
         </div>
 
       </div>
 
       {/* PHASE 4: ACTIONABLE PROCESSING CANVAS */}
-      <div className="bg-white border border-zinc-200 rounded-lg p-4 sm:p-6 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 min-w-0">
+      <div className="bg-white border border-zinc-200 rounded-lg p-3.5 sm:p-6 shadow-xs w-full min-w-0 max-w-full overflow-hidden">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-6 min-w-0">
           <div className="min-w-0">
             <h2 className="text-sm sm:text-base font-bold text-zinc-950 tracking-tight truncate">
               Day-Ahead Generation Stack & Dispatch Curve
             </h2>
-            <p className="text-xs text-zinc-500 mt-0.5 leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-zinc-500 mt-0.5 leading-relaxed">
               Simulated 24-hour stack. <span className="text-teal-700 font-semibold">British Wind Teal</span> generates baseload power; the remainder (<span className="text-amber-700 font-semibold">Warm Copper</span>) is purchased at EPEX SPOT auction.
             </p>
           </div>
 
-          {/* Action Toolbar */}
-          <div className="flex flex-wrap items-center gap-2 shrink-0">
+          {/* Action Toolbar - Mobile-optimized buttons */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 shrink-0">
             <button
               onClick={() => setShowActuals(!showActuals)}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-md text-xs font-medium border transition cursor-pointer active:scale-95 ${
+              className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-md text-xs font-medium border transition cursor-pointer active:scale-95 ${
                 showActuals 
-                  ? 'bg-emerald-50 border-emerald-300 text-emerald-800' 
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold' 
                   : 'bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50'
               }`}
             >
-              <Eye className="w-3.5 h-3.5" />
+              <Eye className="w-3.5 h-3.5 shrink-0" />
               <span>{showActuals ? 'Hide Reality' : 'Compare Outturn'}</span>
             </button>
 
             <button
               onClick={() => setShowEvolution(!showEvolution)}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-md text-xs font-medium border transition cursor-pointer active:scale-95 ${
+              className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-md text-xs font-medium border transition cursor-pointer active:scale-95 ${
                 showEvolution 
-                  ? 'bg-zinc-900 border-zinc-900 text-white shadow-xs' 
+                  ? 'bg-zinc-900 border-zinc-900 text-white shadow-xs font-semibold' 
                   : 'bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50'
               }`}
             >
-              <Activity className="w-3.5 h-3.5" />
+              <Activity className="w-3.5 h-3.5 shrink-0" />
               <span>Evolution Runs</span>
             </button>
 
             {/* 1-Click Order Ticket CSV Export */}
             <button
               onClick={handleExportCSV}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer active:scale-95"
+              className="col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer active:scale-95"
             >
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-3.5 h-3.5 shrink-0" />
               <span>
                 <span className="hidden sm:inline">Download </span>EPEX Ticket (CSV)
               </span>
@@ -535,10 +533,10 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
         </div>
 
         {/* Recharts Canvas */}
-        <div className="h-[280px] sm:h-[360px] w-full min-w-0">
+        <div className="h-[250px] sm:h-[360px] w-full min-w-0">
           <ResponsiveContainer width="100%" height="100%">
             {!showEvolution ? (
-              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+              <AreaChart data={chartData} margin={{ top: 10, right: 8, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="windEnterpriseGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#0D9488" stopOpacity={0.4} />
@@ -550,8 +548,8 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#F4F4F5" />
-                <XAxis dataKey="hour" stroke="#71717A" tick={{ fontSize: 10 }} />
-                <YAxis stroke="#71717A" tick={{ fontSize: 10 }} unit=" MW" />
+                <XAxis dataKey="hour" stroke="#71717A" tick={{ fontSize: 9 }} />
+                <YAxis stroke="#71717A" tick={{ fontSize: 9 }} unit=" MW" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: '#FFFFFF', 
@@ -567,7 +565,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                     name
                   ]}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
+                <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '6px' }} />
 
                 {/* Expected Wind Supply Area (British Wind Teal) */}
                 <Area 
@@ -614,10 +612,10 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                 )}
               </AreaChart>
             ) : (
-              <LineChart data={evolutionChartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+              <LineChart data={evolutionChartData} margin={{ top: 10, right: 8, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#F4F4F5" />
-                <XAxis dataKey="hour" stroke="#71717A" tick={{ fontSize: 10 }} />
-                <YAxis stroke="#71717A" tick={{ fontSize: 10 }} unit=" MW" />
+                <XAxis dataKey="hour" stroke="#71717A" tick={{ fontSize: 9 }} />
+                <YAxis stroke="#71717A" tick={{ fontSize: 9 }} unit=" MW" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: '#FFFFFF', 
@@ -631,7 +629,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                     name
                   ]}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
+                <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '6px' }} />
 
                 <Line type="monotone" dataKey="Decision Forecast (Latest)" stroke="#0D9488" strokeWidth={2.5} dot={false} />
 
@@ -652,12 +650,12 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
 
       {/* GRANULAR SETTLEMENT LADDER WITH DUAL RESOLUTION TOGGLE */}
       <div className="bg-white border border-zinc-200 rounded-lg shadow-xs overflow-hidden w-full min-w-0 max-w-full">
-        <div className="p-4 sm:p-5 border-b border-zinc-200 flex flex-col md:flex-row md:items-center justify-between gap-3 min-w-0">
+        <div className="p-3.5 sm:p-5 border-b border-zinc-200 flex flex-col md:flex-row md:items-center justify-between gap-3 min-w-0">
           <div className="min-w-0">
             <h3 className="text-sm sm:text-base font-bold text-zinc-950 tracking-tight truncate">
               Granular Settlement Ladder ({data.delivery_date})
             </h3>
-            <p className="text-xs text-zinc-500 mt-0.5">
+            <p className="text-[11px] sm:text-xs text-zinc-500 mt-0.5">
               Compare wholesale hourly bidding blocks with physical half-hourly Balancing & Settlement Code (BSC) periods.
             </p>
           </div>
@@ -667,7 +665,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
             <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-md border border-zinc-200 text-xs flex-1 md:flex-initial">
               <button
                 onClick={() => setSettlementView('hourly')}
-                className={`flex-1 md:flex-initial px-2.5 sm:px-3 py-1 rounded-sm font-medium transition cursor-pointer text-center whitespace-nowrap ${
+                className={`flex-1 md:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-sm font-medium transition cursor-pointer text-center whitespace-nowrap text-xs ${
                   settlementView === 'hourly'
                     ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200'
                     : 'text-zinc-600 hover:text-zinc-950'
@@ -677,7 +675,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
               </button>
               <button
                 onClick={() => setSettlementView('halfHourly')}
-                className={`flex-1 md:flex-initial px-2.5 sm:px-3 py-1 rounded-sm font-medium transition cursor-pointer text-center whitespace-nowrap ${
+                className={`flex-1 md:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-sm font-medium transition cursor-pointer text-center whitespace-nowrap text-xs ${
                   settlementView === 'halfHourly'
                     ? 'bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200'
                     : 'text-zinc-600 hover:text-zinc-950'
@@ -699,18 +697,18 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
         </div>
 
         {/* Mobile Swipe Hint */}
-        <div className="sm:hidden px-4 py-1.5 bg-zinc-50 text-[11px] text-zinc-500 border-b border-zinc-100 flex items-center gap-1.5">
+        <div className="sm:hidden px-3.5 py-1.5 bg-zinc-50 text-[10px] text-zinc-500 border-b border-zinc-100 flex items-center gap-1.5">
           <ArrowRightLeft className="w-3 h-3 text-zinc-400 shrink-0" />
-          <span>Swipe horizontally to inspect all metrics</span>
+          <span>Swipe horizontally • Hour / SP column remains locked</span>
         </div>
 
-        {/* Table View with responsive overflow-x-auto */}
+        {/* Table View with responsive overflow-x-auto & sticky first column */}
         <div className="overflow-x-auto max-h-[500px] w-full min-w-0">
           {settlementView === 'hourly' ? (
             <table className="w-full text-left text-xs font-tabular min-w-[550px]">
-              <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200 sticky top-0 z-10 shadow-2xs">
+              <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200 sticky top-0 z-20 shadow-2xs">
                 <tr>
-                  <th className="py-2.5 px-3 sm:px-4 font-sans">Hour (GMT)</th>
+                  <th className="py-2.5 px-3 sm:px-4 font-sans sticky left-0 bg-zinc-50 z-30 shadow-2xs">Hour (GMT)</th>
                   <th className="py-2.5 px-3 sm:px-4 font-sans">Customer Demand</th>
                   <th className="py-2.5 px-3 sm:px-4 text-teal-800 font-sans">Expected Wind</th>
                   <th className="py-2.5 px-3 sm:px-4 text-amber-800 font-sans">Thermal To Buy</th>
@@ -724,7 +722,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                   const coveragePct = s.demand_mw ? Math.min(100, Math.round((s.forecast_mw / s.demand_mw) * 100)) : 0;
                   return (
                     <tr key={s.hour} className="hover:bg-zinc-50/80 transition-colors">
-                      <td className="py-2 px-3 sm:px-4 font-semibold text-zinc-900 font-sans">{s.hour}:00</td>
+                      <td className="py-2 px-3 sm:px-4 font-semibold text-zinc-900 font-sans sticky left-0 bg-white z-10 shadow-2xs">{s.hour}:00</td>
                       <td className="py-2 px-3 sm:px-4 text-zinc-700">{s.demand_mw?.toLocaleString()} MW</td>
                       <td className="py-2 px-3 sm:px-4 text-teal-700 font-semibold">{s.forecast_mw.toLocaleString()} MW</td>
                       <td className="py-2 px-3 sm:px-4 text-amber-700 font-semibold">{thermal?.toLocaleString()} MW</td>
@@ -749,9 +747,9 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
             </table>
           ) : (
             <table className="w-full text-left text-xs font-tabular min-w-[650px]">
-              <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200 sticky top-0 z-10 shadow-2xs">
+              <thead className="bg-zinc-50 text-zinc-600 uppercase tracking-wider font-semibold border-b border-zinc-200 sticky top-0 z-20 shadow-2xs">
                 <tr>
-                  <th className="py-2.5 px-3 sm:px-4 font-sans">Period (SP)</th>
+                  <th className="py-2.5 px-3 sm:px-4 font-sans sticky left-0 bg-zinc-50 z-30 shadow-2xs">Period (SP)</th>
                   <th className="py-2.5 px-3 sm:px-4 font-sans">Interval (GMT)</th>
                   <th className="py-2.5 px-3 sm:px-4 text-teal-800 font-sans">Hourly Forecast</th>
                   <th className="py-2.5 px-3 sm:px-4 text-emerald-800 font-sans">BMRS Actual (FUELHH)</th>
@@ -773,7 +771,7 @@ export const DecisionDesk: React.FC<DecisionDeskProps> = ({
                     
                     return (
                       <tr key={hh.settlementPeriod} className="hover:bg-zinc-50/80 transition-colors">
-                        <td className="py-2 px-3 sm:px-4 font-semibold text-zinc-900 font-sans">SP {hh.settlementPeriod}</td>
+                        <td className="py-2 px-3 sm:px-4 font-semibold text-zinc-900 font-sans sticky left-0 bg-white z-10 shadow-2xs">SP {hh.settlementPeriod}</td>
                         <td className="py-2 px-3 sm:px-4 text-zinc-600 font-sans">{timeLabel}</td>
                         <td className="py-2 px-3 sm:px-4 text-teal-700 font-semibold">{matchingForecast.toLocaleString()} MW</td>
                         <td className="py-2 px-3 sm:px-4 text-emerald-700 font-semibold">{Math.round(hh.generation).toLocaleString()} MW</td>
