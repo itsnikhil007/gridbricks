@@ -25,10 +25,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include API endpoints under /api
+# Include API endpoints under /api and root (for Vercel serverless routing compatibility)
 app.include_router(api_router, prefix="/api")
+app.include_router(api_router)
 
 @app.get("/api/health")
+@app.get("/health")
 def health_check():
     return {
         "status": "healthy",
