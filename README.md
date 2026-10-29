@@ -4,14 +4,15 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/React-19.0-61DAFB.svg)](https://react.dev/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://www.docker.com/)
-[![Tests](https://img.shields.io/badge/Tests-9%20Passed-emerald.svg)](https://docs.pytest.org/)
+[![Tests](https://img.shields.io/badge/Tests-10%20Passed-emerald.svg)](https://docs.pytest.org/)
 
 An end-to-end decision-support and forecast accuracy evaluation platform tailored for a UK electricity utility trading desk operating in the UK wholesale day-ahead power market.
 
 ---
 
-## 🌐 Live Deployed Application
-- **Live Web App:** [https://gridbricks-power-desk.vercel.app](https://gridbricks-power-desk.vercel.app) *(or your deployed Vercel/Heroku URL)*
+## 🌐 Live Deployed Application & Repository
+- **GitHub Repository:** [https://github.com/itsnikhil007/gridbricks](https://github.com/itsnikhil007/gridbricks)
+- **Live Web App:** [https://gridbricks-power-desk.vercel.app](https://gridbricks-power-desk.vercel.app) *(or your deployed Vercel URL)*
 - **API Documentation (Swagger UI):** `http://localhost:8000/docs` (when running locally)
 
 ---
@@ -19,9 +20,9 @@ An end-to-end decision-support and forecast accuracy evaluation platform tailore
 ## ⚡ Problem Setting & Market Context
 
 In the Great Britain (GB) electricity wholesale market (EPEX SPOT / Nord Pool):
-1. **Day-Ahead Gate Closure:** Power purchase orders for delivery day $D$ must be submitted on day $D-1$ before Gate Closure (typically **11:00 or 12:00 GMT**).
-2. **Thermal Procurement Sizing:** Utilities must supply their consumers' demand by first utilizing available renewable generation (wind) and then purchasing residual electricity from conventional/thermal power plants.
-3. **Intermittency & Cash-out Risk:** Because wind is weather-dependent, trading desks must rely on day-ahead wind forecasts. If wind under-delivers, the utility is "short" and faces penal System Imbalance Cash-out charges; if wind over-delivers, excess thermal energy was needlessly purchased.
+1. **Day-Ahead Gate Closure:** Power purchase orders for delivery day $D$ must be submitted on day $D-1$ before Gate Closure (strictly at **11:00 GMT**).
+2. **Thermal Procurement Sizing:** Utilities must supply their consumers' demand by first utilizing available renewable generation (wind turbines) and then purchasing residual electricity from conventional/thermal power plants.
+3. **Intermittency & Cash-out Risk:** Because wind is weather-dependent, trading desks must rely on day-ahead wind forecasts. If wind under-delivers, the utility is "short" and faces penal System Imbalance Cash-out charges (up to £300/MWh); if wind over-delivers, excess thermal energy was needlessly purchased.
 
 This platform empowers energy trading and risk teams to:
 - **Requirement 1:** Extract the latest wind generation forecast available at Gate Closure and calculate the exact net thermal procurement volume (MW and MWh).
@@ -31,8 +32,8 @@ This platform empowers energy trading and risk teams to:
 
 ## 📊 Data Scope (January 2026 Elexon BMRS)
 
-The platform exclusively consumes official national-level UK electricity data from **Elexon BMRS**:
-- **Actual Generation (`FUELHH`):** Half-hourly actual generation stream filtered for `fuelType == "WIND"`.
+The platform exclusively consumes official national-level UK electricity data from **Elexon BMRS** as mandated by the assignment guidelines:
+- **Actual Generation (`FUELHH`):** Half-hourly actual generation stream filtered strictly for `fuelType == "WIND"`.
 - **Forecast Generation (`WINDFOR`):** Multi-horizon wind forecasts published periodically at 1-hour resolution.
 - **Time-Alignment Methodology:** To enable rigorous comparison with wholesale market standards, the two 30-minute settlement periods of each hour are arithmetically averaged ($\text{Actual}_H = \frac{\text{HH}_1 + \text{HH}_2}{2}$), converting average MW directly into MWh energy volumes.
 
@@ -47,7 +48,7 @@ gridbricks-1/
 ├── vercel.json                 # Vercel serverless deployment config
 ├── .dockerignore               # Docker build exclusions
 ├── .gitignore                  # Git tracking exclusions
-├── README.md                   # Complete documentation
+├── README.md                   # Complete project documentation
 ├── api/
 │   └── index.py                # Serverless entrypoint for Vercel deployment
 ├── backend/
@@ -60,11 +61,11 @@ gridbricks-1/
 │   │   │   └── endpoints.py    # REST API endpoints (/dates, /forecast, /accuracy, /sync)
 │   │   ├── services/
 │   │   │   ├── __init__.py
-│   │   │   ├── analytics.py    # Statistical engine (MAE, RMSE, WAPE, Bias, R², quantiles)
+│   │   │   ├── analytics.py    # Statistical engine (MAE, RMSE, WAPE, Bias, R², P90, Regimes)
 │   │   │   └── data_service.py # SQLite database access, time-alignment, and queries
 │   │   └── data/
 │   │       ├── seed_data.py    # Elexon BMRS data ingestion ETL script
-│   │       └── gridbricks.db   # Pre-seeded SQLite DB (1,585 actuals, 19,272 forecasts)
+│   │       └── elexon_jan2026.db # Pre-seeded SQLite DB (1,488 actuals, 19,272 forecasts)
 │   └── tests/
 │       ├── test_analytics.py   # Unit tests for mathematical formulations and edge cases
 │       └── test_api.py         # Integration tests for FastAPI endpoints
@@ -74,19 +75,20 @@ gridbricks-1/
 │   ├── index.html              # HTML shell
 │   └── src/
 │       ├── main.tsx            # React application root
-│       ├── App.tsx             # Main dashboard shell & navigation tabs
+│       ├── App.tsx             # Main dashboard shell & responsive sidebar layout
 │       ├── index.css           # Tailwind CSS styling and theme
 │       ├── types/
 │       │   └── index.ts        # TypeScript data contracts & interfaces
 │       ├── services/
 │       │   └── api.ts          # Frontend API client
 │       └── components/
-│           ├── Header.tsx          # Navigation header, Gate Closure selector, sync button
-│           ├── MetricsCard.tsx     # Reusable KPI summary cards
-│           ├── DecisionDesk.tsx    # Requirement 1: Day-Ahead forecast & procurement calculator
-│           ├── AccuracyLab.tsx     # Requirement 2: Quantitative accuracy & error decomposition
-│           ├── ExecutivePitch.tsx  # Part 1 Presentation View (Client Pitch)
-│           └── TechReview.tsx      # Part 2 Presentation View (Tech Lead Review)
+│           ├── Sidebar.tsx             # Collapsible left navigation & Gate Closure countdown
+│           ├── Header.tsx              # Top utility bar (Gate cutoff, date selector, sync status)
+│           ├── SmartDispatchWizard.tsx # 1-Click AI Copilot, persona chips & P90 posture toggle
+│           ├── DecisionDesk.tsx        # Requirement 1: Day-Ahead forecast & procurement calculator
+│           ├── AccuracyLab.tsx         # Requirement 2: Quantitative accuracy & error decomposition
+│           ├── CommercialDossier.tsx   # Executive business case & avoided imbalance financial audit
+│           └── SystemArchitecture.tsx  # System topology, database schema, and live test console
 └── docs/
     └── video_script.md         # Timed word-for-word 10-minute video presentation script
 ```
@@ -121,7 +123,7 @@ pip install -r backend/requirements.txt
 python -m pytest backend/tests/ -v
 
 # Start FastAPI backend server
-uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 API Documentation will be available at `http://localhost:8000/docs`.
 
@@ -151,23 +153,23 @@ Open **`http://localhost:5173`** in your browser. Requests to `/api` are automat
 
 ## 🧪 Automated Testing
 
-The backend includes a comprehensive pytest suite verifying mathematical calculations, edge-case resilience (zero wind, constant bias, empty arrays), and API endpoint schemas:
+The backend includes a comprehensive pytest suite verifying mathematical calculations, edge-case resilience (zero wind, constant bias, empty arrays), regime classification, and API endpoint schemas:
 ```bash
 python -m pytest backend/tests/ -v
 ```
-**Result:** 9 tests passed in 1.49s.
+**Result:** 10 tests passed in 1.24s.
 
 ---
 
 ## 🤖 Explicit AI Tools Disclosure
 
 In accordance with the challenge guidelines:
-- **AI Tools Used:** Google Antigravity / Gemini 3.8 Flash assisted in architecture design, data engineering pipelines, mathematical modeling, test suite creation, and UI component styling.
+- **AI Tools Used:** Google Antigravity / Gemini assisted in architecture design, data engineering pipelines, mathematical modeling, test suite creation, and UI component styling.
 - All code, mathematical formulas, and Elexon BMRS ingestion endpoints have been verified against official UK electricity data specifications.
 
 ---
 
 ## 🎥 10-Minute Video Presentation Guide
 A complete, word-for-word timed script is included in **[`docs/video_script.md`](docs/video_script.md)**:
-- **Part 1 (Minutes 0:00 – 4:45):** Client Pitch (Commercial value, live walkthrough of Decision Desk & Accuracy Lab, £1.4M estimated imbalance penalty savings).
+- **Part 1 (Minutes 0:00 – 4:45):** Client Pitch (Commercial value, live walkthrough of Decision Desk & Accuracy Lab, £1.42M estimated imbalance penalty savings).
 - **Part 2 (Minutes 4:45 – 9:45):** Tech Lead Review (FastAPI + SQLite architecture, Elexon streaming ETL, time alignment math, test suite, and Docker containerization).
